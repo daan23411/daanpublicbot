@@ -1,0 +1,28 @@
+{
+  "name": "daanpublicbot",
+  "version": "1.0.0",
+  "description": "test bot for another series",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "daan2341#6969",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "mongoose": "^5.11.15",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daan23411/daanpublicbot"
+  },
+  "bugs": {
+    "url": "https://github.com/daan23411/daanpublicbot/issues"
+  },
+  "homepage": "https://github.com/daan23411/daanpublicbot#readme"
+}

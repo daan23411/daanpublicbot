@@ -13,6 +13,7 @@ const memberCount = require('./member-count')
 const sendMessage = require('./send-message')
 const mongo = require('./mongo')
 const messageCount = require('./message-counter')
+const mute = require('./mute')
 
 client.on('ready', async () => {
     console.log('The client is ready for commands')
@@ -29,6 +30,8 @@ client.on('ready', async () => {
     const channel = guild.channels.cache.get('713368626190876716')
 
     // sendMessage(channel, 'hello world', 3)
+
+    mute(client)
 
     messageCount(client)
 

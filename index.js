@@ -20,6 +20,8 @@ const antiAd = require('./anti-ad')
 
 client.on('ready', async () => {
     console.log('The client is ready!')
+
+    antiAd(client)
   
     const baseFile = 'command-base.js'
     const commandBase = require(`./commands/${baseFile}`)
@@ -163,7 +165,7 @@ client.on('ready', async () => {
     command(client, 'serverinfo', message => {
         const { guild } = message
 
-        const { name, region, memberCount, owner, afkTimeout, createdAt, premiumTier, vanityURLCode, roles } = guild
+        const { name, region, memberCount, owner, afkTimeout, createdAt, premiumTier, vanityURLCode } = guild
         const icon = guild.iconURL()
 
         let embed = new Discord.MessageEmbed()

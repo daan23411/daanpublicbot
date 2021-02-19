@@ -16,6 +16,7 @@ const sendMessage = require('./send-message')
 const mongo = require('./mongo')
 const messageCount = require('./message-counter')
 const mute = require('./mute')
+const antiAd = require('./anti-ad')
 
 client.on('ready', async () => {
     console.log('The client is ready!')

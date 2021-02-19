@@ -130,7 +130,7 @@ module.exports = (client, commandOptions) => {
         }
 
         // Handle the custom command code
-        callback(message, arguments, arguments.join(' '), client)
+        callback(message, client, arguments, arguments.join(' '))
 
         return
       }

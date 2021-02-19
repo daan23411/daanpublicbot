@@ -23,7 +23,6 @@ module.exports = (client) => {
       // discord.gg/23RAN4
   
       const code = content.split('discord.gg/')[1]
-      console.log('CODE:', code)
   
       if (content.includes('discord.gg/')) {
         const isOurInvite = await isInvite(guild, code)

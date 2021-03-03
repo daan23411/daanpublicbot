@@ -4,9 +4,9 @@ module.exports = {
     commands: 'setinvite',
     expectedArgs: '<message>',
     permissionError: 'You need admin permissions to run this command',
-    minArgs: 2,
-    maxArgs: 2,
-    callback: (message, arguments, text) => {
+    minArgs: 1,
+    maxArgs: 1,
+    callback: async (message) => {
         const { member, channel, content, guild } = message
 
         if (!member.hasPermission('ADMINISTRATOR')) {
@@ -48,5 +48,6 @@ module.exports = {
           }
         })
     },
-    permissions: 'ADMINISTRATOR'
+    permissions: 'ADMINISTRATOR',
+    requiredRoles: ['TESTER']
   }

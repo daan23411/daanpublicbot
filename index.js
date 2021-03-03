@@ -72,53 +72,8 @@ client.on('ready', async () => {
 
     privateMessage(client, 'help', 'DM a staff member to get help.')
 
-    command(client, 'ban', (message) => {
-        const { member, mentions } = message
-        const tag = `<@${member.id}>`
-        if( member.hasPermission("ADMINISTRATOR") || 
-            member.hasPermission("BAN_MEMBERS") 
-            ) {
-            const target = mentions.users.first()
-            if (target) {
-                const targetMember = message.guild.members.cache.get(target.id)
-                targetMember.ban()
-                message.channel.send(`✅ - You succesfully banned ${tag}`)
-            } else {
-                message.channel.send(`❌ - You did not specify a user to ban ${tag}.`)
-            }
-        } else {
-            return message.channel.send(`❌ - You do not have enough permissions to execute this command <@${member.id}>!`);
-        }
-    });
-
-    command(client, 'kick', (message) => {
-        const { member, mentions } = message
-        const tag = `<@${member.id}>`
-        if( member.hasPermission("ADMINISTRATOR") || 
-            member.hasPermission("KICK_MEMBERS") 
-            ) {
-            const target = mentions.users.first()
-            if (target) {
-                const targetMember = message.guild.members.cache.get(target.id)
-                targetMember.kick()
-                message.channel.send(`✅ - You succesfully been kicked ${tag}`)
-            } else {
-                message.channel.send(`❌ - You did not specify a user to kick ${tag}.`)
-            }
-        } else {
-            return message.channel.send(`❌ - You do not have enough permissions to execute this command ${tag}!`);
-        }
-    });
-
     command(client, 'createtext', (message) => {
-        const name = message.content.replace('!createtext', '')
-
-        message.guild.channels.create(name, {
-            type: 'text'
-        }).then(channel => {
-            const categoryId = '713368626190876714'
-            channel.setParent(categoryId)
-        })
+        
     })
 
     command(client, 'createvoice', (message) => {

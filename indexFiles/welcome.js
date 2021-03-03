@@ -28,7 +28,6 @@ module.exports = (client) => {
     const channelId = data[0]
     const text = data[1]
 
-    const channel = guild.channels.cache.get(channelId)
     channel.send(text.replace(/<@>/g, `<@${member.id}>`))
   }
 

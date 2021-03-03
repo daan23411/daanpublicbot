@@ -1,46 +1,33 @@
-const invitenotiSchema = require("../../schemas/invitenoti-schema")
+const ticketch = require("../../schemas/ticketch-schema")
 const mongo = require('../../mongo')
 
 module.exports = {
-  commands: 'setinvite',
-  expectedArgs: '<message>',
+  commands: 'setticket',
+  expectedArgs: '<channelid>',
   permissionError: 'You need admin permissions to run this command',
   minArgs: 1,
   maxArgs: 2000,
   callback: async (message) => {
     const cache = {}
 
-    const { member, channel, content, guild } = message
+    const { channel, member, guild } = message
 
     if (!member.hasPermission('ADMINISTRATOR')) {
       channel.send('You do not have permission to run this command.')
       return
     }
 
-    let text = content
-
-    const split = text.split(' ')
-
-    if (split.length < 2) {
-      channel.send('Please provide a welcome message')
-      return
-    }
-
-    split.shift()
-    text = split.join(' ')
-
-    cache[guild.id] = [channel.id, text]
+    cache[guild.id] = [channel.id]
 
     await mongo().then(async (mongoose) => {
       try {
-        await invitenotiSchema.findOneAndUpdate(
+        await ticketch.findOneAndUpdate(
           {
             _id: guild.id,
           },
           {
             _id: guild.id,
-            channelId: channel.id,
-            text,
+            channelId: channel.id
           },
           {
             upsert: true,
@@ -51,5 +38,5 @@ module.exports = {
       }
     })
   },
-  permissions: 'ADMINISTRATOR'
+  permissions: 'ADMINISTRATOR',
 }

@@ -1,5 +1,4 @@
 const inviteNoti = require('../schemas/invitenoti-schema')
-const command = require('../command')
 const mongo = require('../mongo')
 
 module.exports = client => {

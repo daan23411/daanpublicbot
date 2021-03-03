@@ -27,10 +27,9 @@ module.exports = (client) => {
       if (content.includes('discord.gg/')) {
         const isOurInvite = await isInvite(guild, code)
         if (!isOurInvite) {
-          // we know that they are advertising an outside discord server
          try {
-            member.send(`You have been kicked from **${guild.name}** for advertising.`)
-          await member.kick('Advertising in our server.')
+            member.send(`You have been banned from **${guild.name}** for advertising.`)
+          await member.ban('Advertising in our server.')
          } catch (err) {
              console.log(err)
          }

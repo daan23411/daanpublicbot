@@ -1,8 +1,11 @@
+const ticketFile = require('../../indexFiles/ticket-file')
+const check = '✅'
+
 module.exports = {
     commands: ['ticket', 'new'],
     expectedArgs: '<message>',
     minArgs: 1,
-    callback: (message, arguments, text) => {
-      
+    callback: (client) => {
+      ticketFile(client)
     },
   }

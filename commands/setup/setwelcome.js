@@ -51,6 +51,5 @@ module.exports = {
       }
     })
   },
-  permissions: 'ADMINISTRATOR',
-  requiredRoles: ['TESTER']
+  permissions: 'ADMINISTRATOR'
 }

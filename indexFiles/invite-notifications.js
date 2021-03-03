@@ -1,4 +1,6 @@
 const inviteNoti = require('../schemas/invitenoti-schema')
+const command = require('../command')
+const mongo = require('../mongo')
 
 module.exports = client => {
     const invites = {}
@@ -9,7 +11,7 @@ module.exports = client => {
                 const inviteCounter = {}
 
                 invites.forEach(invite => {
-                    const { uses, inviter} = invite
+                    const { uses, inviter } = invite
                     const { username, discriminator } = inviter
 
                     const name = `${username}#${discriminator}`
@@ -25,11 +27,41 @@ module.exports = client => {
     client.guilds.cache.forEach(async guild => {
         invites[guild.id] = await getInvitesCount(guild)
     })
-
+    
     client.on('guildMemberAdd', async member => {
+        const cache = {}
         const { guild } = member
-
-        const inviteBefore = invites[guild.id]
-        const inviteAfter = await getInvitesCount(guild)
+    
+        const invitesBefore = invites[guild.id]
+        const invitesAfter = await getInvitesCount(guild)
+    
+        for (const inviter in invitesAfter) {
+            if (invitesBefore[inviter] === invitesAfter[inviter] - 1) {
+                const { guild } = member
+    
+        let data = cache[guild.id]
+    
+        if (!data) {
+            console.log('FETCHING FROM DATABASE')
+    
+            await mongo().then(async (mongoose) => {
+                try {
+                    const result = await inviteNoti.findOne({ _id: guild.id })
+    
+                    cache[guild.id] = data = [result.channelId, result.text]
+                } finally {
+                    mongoose.connection.close()
+                }
+            })
+        }
+    
+        const channelId = data[0]
+        const text = data[1]
+        const count = invitesAfter[inviter]
+    
+        const channel = guild.channels.cache.get(channelId)
+        channel.send(text.replace(/<@>/g, `<@${member.id}>`) + ` Invited By: **${inviter}**. They now have **${count}** invites`)
+            }
+        }
     })
 }

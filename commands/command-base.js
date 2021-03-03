@@ -1,10 +1,3 @@
-/**
- * NOTE:
- *  Some parts of this code have been improved since the original command base video.
- *  This file should still work as expected, however if you are learning the inner workings of
- *  this file then expect the file to be slightly different than in the video.
- */
-
 const { prefix } = require('../config.json')
 
 const validatePermissions = (permissions) => {

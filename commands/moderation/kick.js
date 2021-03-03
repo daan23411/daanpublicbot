@@ -2,8 +2,8 @@ module.exports = {
     commands: 'kick',
     expectedArgs: '<@>',
     permissionError: 'You need kick permissions to run this command',
-    minArgs: 2,
-    maxArgs: 2,
+    minArgs: 1,
+    maxArgs: 1,
     callback: (message, arguments, text) => {
         const { member, mentions } = message
         const tag = `<@${member.id}>`
@@ -14,7 +14,7 @@ module.exports = {
             if (target) {
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.kick()
-                message.channel.send(`✅ - You succesfully been kicked ${tag}`)
+                message.channel.send(`✅ - You succesfully kicked ${tag}`)
             } else {
                 message.channel.send(`❌ - You did not specify a user to kick ${tag}.`)
             }

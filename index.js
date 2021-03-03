@@ -10,7 +10,6 @@ const firstMessage = require('./indexFiles/first-message')
 const privateMessage = require('./indexFiles/private-message')
 const roleClaim = require('./indexFiles/role-claim')
 const poll = require('./indexFiles/poll')
-const welcome = require('./indexFiles/welcome')
 const memberCount = require('./indexFiles/member-count')
 const sendMessage = require('./indexFiles/send-message')
 const mongo = require('./mongo')
@@ -18,11 +17,14 @@ const messageCount = require('./indexFiles/message-counter')
 const mute = require('./indexFiles/mute')
 const antiAd = require('./indexFiles/anti-ad')
 const inviteNotifications = require('./indexFiles/invite-notifications')
+const welcome = require('./indexFiles/welcome')
 
 client.on('ready', async () => {
     console.log('The client is ready!')
 
     inviteNotifications(client)
+
+    welcome(client)
 
     antiAd(client)
   
@@ -62,8 +64,6 @@ client.on('ready', async () => {
     messageCount(client)
 
     memberCount(client)
-
-    welcome(client)
 
     roleClaim(client)
 

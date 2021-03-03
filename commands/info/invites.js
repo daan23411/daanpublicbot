@@ -28,7 +28,7 @@ module.exports = {
           replyText += `\n${invite} has invited ${count} member(s)!`
         }
   
-        message.reply(replyText)
+        message.reply(replyText + `\n**NOTE:** If you have less then 3 invites it is going to say undefined. Do not be botherd with this. Do not report this as this ain't an issue`)
       })
     },
   }

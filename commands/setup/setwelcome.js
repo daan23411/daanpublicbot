@@ -1,12 +1,12 @@
-const invitenotiSchema = require("../../schemas/invitenoti-schema")
+const welcomeSchema = require("../../schemas/welcome-schema")
 const mongo = require('../../mongo')
 
 module.exports = {
-  commands: 'setinvite',
+  commands: 'setwelcome',
   expectedArgs: '<message>',
   permissionError: 'You need admin permissions to run this command',
   minArgs: 1,
-  maxArgs: 2000,
+  maxArgs: 1,
   callback: async (message) => {
     const cache = {}
 
@@ -33,7 +33,7 @@ module.exports = {
 
     await mongo().then(async (mongoose) => {
       try {
-        await invitenotiSchema.findOneAndUpdate(
+        await welcomeSchema.findOneAndUpdate(
           {
             _id: guild.id,
           },

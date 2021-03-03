@@ -6,20 +6,23 @@ client.setMaxListeners(5000)
 
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message')
-const privateMessage = require('./private-message')
-const roleClaim = require('./role-claim')
-const poll = require('./poll')
-const welcome = require('./welcome')
-const memberCount = require('./member-count')
-const sendMessage = require('./send-message')
+const firstMessage = require('./indexFiles/first-message')
+const privateMessage = require('./indexFiles/private-message')
+const roleClaim = require('./indexFiles/role-claim')
+const poll = require('./indexFiles/poll')
+const welcome = require('./indexFiles/welcome')
+const memberCount = require('./indexFiles/member-count')
+const sendMessage = require('./indexFiles/send-message')
 const mongo = require('./mongo')
-const messageCount = require('./message-counter')
-const mute = require('./mute')
-const antiAd = require('./anti-ad')
+const messageCount = require('./indexFiles/message-counter')
+const mute = require('./indexFiles/mute')
+const antiAd = require('./indexFiles/anti-ad')
+const inviteNotifications = require('./indexFiles/invite-notifications')
 
 client.on('ready', async () => {
     console.log('The client is ready!')
+
+    inviteNotifications(client)
 
     antiAd(client)
   
@@ -71,26 +74,6 @@ client.on('ready', async () => {
     privateMessage(client, 'ping', 'Pong!')
 
     privateMessage(client, 'help', 'DM a staff member to get help.')
-
-    command(client, 'createtext', (message) => {
-        
-    })
-
-    command(client, 'createvoice', (message) => {
-        const name = message.content.replace('!createvoice ', '')
-
-        message.guild.channels.create(name, {
-            type: 'voice'
-        }).then(channel => {
-            const categoryId = '713368626190876714'
-            channel.setParent(categoryId)
-            channel.setUserLimit(10)
-        })
-    })
-
-    command(client, ['ping', 'test'], message => {
-        message.channel.send('Pong!')
-    })
 
     command(client, 'servers', message => {
         client.guilds.cache.forEach((guild) => {

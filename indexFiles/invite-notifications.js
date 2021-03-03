@@ -1,3 +1,5 @@
+const inviteNoti = require('../schemas/invitenoti-schema')
+
 module.exports = client => {
     const invites = {}
 
@@ -22,6 +24,12 @@ module.exports = client => {
 
     client.guilds.cache.forEach(async guild => {
         invites[guild.id] = await getInvitesCount(guild)
-        console.log('Invites:', invites[guild.id])
+    })
+
+    client.on('guildMemberAdd', async member => {
+        const { guild } = member
+
+        const inviteBefore = invites[guild.id]
+        const inviteAfter = await getInvitesCount(guild)
     })
 }

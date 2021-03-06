@@ -6,6 +6,7 @@ module.exports = {
   expectedArgs: '<message>',
   permissionError: 'You need admin permissions to run this command',
   minArgs: 1,
+  description: 'Setup the welcome channel. (DO NOT USE IF USING INVITE CHANNEL)',
   maxArgs: 1,
   callback: async (message) => {
     const cache = {}

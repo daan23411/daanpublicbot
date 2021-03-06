@@ -4,6 +4,7 @@ module.exports = {
     permissionError: 'You need kick permissions to run this command',
     minArgs: 1,
     maxArgs: 1,
+    description: 'Kick a user.',
     callback: (message, arguments, text) => {
         const { member, mentions } = message
         const tag = `<@${member.id}>`

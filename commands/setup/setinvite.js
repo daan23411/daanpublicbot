@@ -6,6 +6,7 @@ module.exports = {
   expectedArgs: '<message>',
   permissionError: 'You need admin permissions to run this command',
   minArgs: 1,
+  description: 'Setup the invite channel',
   maxArgs: 2000,
   callback: async (message) => {
     const cache = {}

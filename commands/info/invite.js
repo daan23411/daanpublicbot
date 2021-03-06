@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
     commands: 'invite',
+    description: 'Invite me to your discord server!',
     callback: (message, client) => {
        let embed = new MessageEmbed()
        .setTitle('Invite Me')

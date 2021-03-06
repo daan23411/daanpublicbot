@@ -3,6 +3,7 @@ module.exports = {
         expectedArgs: '<@> <duration number> <m, h, d or life>',
         permissionError: 'You need manage roles permissions to run this command',
         minArgs: 3,
+        description: 'Mute a user.',
         maxArgs: 3,
         callback: async (message, arguments, text) => {
             const syntax = '!mute <@> <duration as a number> <m, h, d, or life>'

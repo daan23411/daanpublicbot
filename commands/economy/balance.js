@@ -3,6 +3,7 @@ const economy = require('../../indexFiles/economy')
 module.exports = {
     commands: ['balance', 'bal'],
     expectedArgs: '[target user\'s @]',
+    description: 'See how many coins a player has.',
     maxArgs: 1,
     callback: async (message) => {
         const target = message.mentions.users.first() || message.author

@@ -1,5 +1,6 @@
 module.exports = {
     commands: 'invites',
+    description: 'See who has the most invites!',
     callback: (message) => {
       const { guild } = message
   

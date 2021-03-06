@@ -5,6 +5,7 @@ module.exports = {
   minArgs: 2,
   maxArgs: 2,
   expectedArgs: "<The target's @> <coin amount>",
+  description: 'Add coins to someones balance',
   permissionError: 'You must be an administrator to use this command.',
   permissions: 'ADMINISTRATOR',
   callback: async (message, arguments) => {

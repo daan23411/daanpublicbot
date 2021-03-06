@@ -3,6 +3,7 @@ module.exports = {
     expectedArgs: '<@>',
     minArgs: 1,
     maxArgs: 1,
+    description: 'Ban a user.',
     permissions: ['BAN_MEMBERS'],
     callback: (message, client) => {
         const { member, mentions } = message

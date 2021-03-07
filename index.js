@@ -17,9 +17,11 @@ const antiAd = require('./indexFiles/anti-ad')
 const inviteNotifications = require('./indexFiles/invite-notifications')
 const welcome = require('./indexFiles/welcome')
 const loadCommands = require('./commands/load-commands')
+const commandBase = require('./commands/command-base')
 
 client.on('ready', async () => {
     console.log('The client is ready!')
+    commandBase.loadPrefixes(client)
 
     loadCommands(client)
 

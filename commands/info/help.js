@@ -1,10 +1,10 @@
 const loadCommands = require('../load-commands')
-const { prefix } = require('../../config.json')
+const { prefix: newPrefix } = require('../../config.json')
 
 module.exports = {
   commands: ['help'],
   description: "Describes all of this bot's commands",
-  callback: (message, client, arguments, text) => {
+  callback: (message, arguments, text, client) => {
     let reply = `I am ${client.user.username}, here are my supported commands:\n\n`
 
     const commands = loadCommands()
@@ -39,7 +39,7 @@ module.exports = {
       const args = command.expectedArgs ? ` ${command.expectedArgs}` : ''
       const { description } = command
 
-      reply += `**${prefix}${mainCommand}${args}** = ${description}\n`
+      reply += `**${newPrefix}${mainCommand}${args}** = ${description}\n`
     }
 
     message.channel.send(reply)

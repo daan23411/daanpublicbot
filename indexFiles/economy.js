@@ -8,7 +8,6 @@ module.exports = (client) => {}
 module.exports.addCoins = async (guildId, userId, coins) => {
   return await mongo().then(async (mongoose) => {
     try {
-      console.log('Running findOneAndUpdate()')
 
       const result = await profileSchema.findOneAndUpdate(
         {
@@ -28,8 +27,6 @@ module.exports.addCoins = async (guildId, userId, coins) => {
         }
       )
 
-      console.log('RESULT:', result)
-
       coinsCache[`${guildId}-${userId}`] = result.coins
 
       return result.coins
@@ -47,14 +44,11 @@ module.exports.getCoins = async (guildId, userId) => {
 
   return await mongo().then(async (mongoose) => {
     try {
-      console.log('Running findOne()')
 
       const result = await profileSchema.findOne({
         guildId,
         userId,
       })
-
-      console.log('RESULT:', result)
 
       let coins = 0
       if (result) {

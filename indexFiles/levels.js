@@ -2,6 +2,11 @@ const mongo = require('../mongo')
 const profileSchema = require('../schemas/profile-schema')
 
 module.exports = (client) => {
+
+if (message.author === client) {
+ return
+}
+
     client.on('message', message => {
         const { guild, member } = message
 

@@ -1,5 +1,5 @@
 const loadCommands = require('../load-commands')
-const { prefix: newPrefix } = require('../../config.json')
+const { newPrefix } = require('../command-base')
 
 module.exports = {
   commands: ['help'],

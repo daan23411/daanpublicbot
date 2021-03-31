@@ -1,5 +1,5 @@
 const mongo = require('../../mongo')
-const prefixSchema = require('../../schemas/prefix-schema')
+const PrefixSchema = require('../../schemas/prefix-schema')
 
 // Importing command-base so we have access to the
 // "updateCache" function which I forgot to cover in the video
@@ -18,7 +18,7 @@ module.exports = {
         const guildId = message.guild.id
         const prefix = arguments[0]
 
-        await prefixSchema.findOneAndUpdate(
+        await PrefixSchema.findOneAndUpdate(
           {
             _id: guildId,
           },

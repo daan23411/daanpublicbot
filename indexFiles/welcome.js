@@ -14,15 +14,13 @@ module.exports = (client) => {
     if (!data) {
       console.log('FETCHING FROM DATABASE')
 
-      await mongo().then(async (mongoose) => {
         try {
           const result = await welcomeSchema.findOne({ _id: guild.id })
 
           cache[guild.id] = data = [result.channelId, result.text]
-        } finally {
-          mongoose.connection.close()
+        } catch (err) {
+          console.log(err)
         }
-      })
     }
 
     const channelId = data[0]

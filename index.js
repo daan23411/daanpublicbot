@@ -22,7 +22,6 @@ const commandBase = require('./commands/command-base')
 
 
 client.on('ready', async () => {
-    console.log('The client is ready!')
     commandBase.loadPrefixes(client)
 
     loadCommands(client)
@@ -35,16 +34,10 @@ client.on('ready', async () => {
 
     antiAd(client)
 
-    await mongo().then(mongoose => {
-        try {
-            console.log('Conntected to MongoDB!')
-        } finally {
-            mongoose.connection.close()
-        }
-    })
+    await mongo(client)
 
-    const guild = client.guilds.cache.get('713368626190876712')
-    const channel = guild.channels.cache.get('713368626190876716')
+    // const guild = client.guilds.cache.get('713368626190876712')
+    // const channel = guild.channels.cache.get('713368626190876716')
 
     // sendMessage(channel, 'hello world', 3)
 
@@ -133,6 +126,7 @@ client.on('ready', async () => {
 
 
         message.channel.send(embed)
+        console.log('The client is ready!')
     })
 });
 

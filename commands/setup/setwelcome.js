@@ -32,7 +32,6 @@ module.exports = {
 
     cache[guild.id] = [channel.id, text]
 
-    await mongo().then(async (mongoose) => {
       try {
         await welcomeSchema.findOneAndUpdate(
           {
@@ -47,10 +46,9 @@ module.exports = {
             upsert: true,
           }
         )
-      } finally {
-        mongoose.connection.close()
+      } catch (err) {
+        console.log(err)
       }
-    })
   },
   permissions: 'ADMINISTRATOR'
 }

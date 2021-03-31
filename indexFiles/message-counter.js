@@ -6,7 +6,6 @@ module.exports = (client) => {
         const { author } = message
         const { id } = author
 
-        await mongo().then(async mongoose => {
             try {
                 await messageCountSchema.findOneAndUpdate({
                     _id: id
@@ -20,9 +19,8 @@ module.exports = (client) => {
                 }
                 )
                 .exec()
-            } finally {
-                mongoose.connection.close()
-            }
-        })
+            } catch (err) {
+                console.log(err)
+              }
     })
 }

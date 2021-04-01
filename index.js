@@ -28,13 +28,6 @@ client.on('ready', async () => {
 
     await mongo(client)
 
-    // const guild = client.guilds.cache.get('713368626190876712')
-    // const channel = guild.channels.cache.get('713368626190876716')
-
-    // sendMessage(channel, 'hello world', 3)
-
-   // mute(client)
-
     messageCount(client)
 
     memberCount(client)

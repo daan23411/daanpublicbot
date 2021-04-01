@@ -32,24 +32,21 @@ module.exports = {
 
     cache[guild.id] = [channel.id, text]
 
-     try {
-        await invitenotiSchema.findOneAndUpdate(
-          {
-            _id: guild.id,
-          },
-          {
-            _id: guild.id,
-            channelId: channel.id,
-            text,
-          },
-          {
-            upsert: true,
-          }
-        )
-      } catch (err) {
-        console.log(err)
+    await invitenotiSchema.findOneAndUpdate(
+      {
+        _id: guild.id,
+      },
+      {
+        _id: guild.id,
+        channelId: channel.id,
+        text,
+      },
+      {
+        upsert: true,
       }
-    
+    )
+
+
   },
   permissions: 'ADMINISTRATOR'
 }

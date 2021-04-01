@@ -1,36 +1,43 @@
-const mongo = require('../../mongo')
 const languageSchema = require('../../schemas/language-schema')
 const { languages } = require('../../lang.json')
+const { setLanguage } = require('../../indexFiles/language')
 
 module.exports = {
-    commands: ['setlang', 'setlanguage'],
-    minArgs: 1,
-    maxArgs: 1,
-    expectedArgs: '<language>',
-    permissions: 'ADMINISTRATOR',
-    description: 'Displays the bot\'s latency and the discord API latency',
-    callback: async (message, arguments) => {
-      const { guild } = message
+  commands: ['setlang', 'setlanguage'],
+  minArgs: 1,
+  maxArgs: 1,
+  expectedArgs: '<Language>',
+  permissions: 'ADMINISTRATOR',
+  callback: async (message, arguments) => {
+    const { guild } = message
 
-      const targetLanguage = arguments[0].toLowerCase()
-      if(!languages.includes(targetLanguage)) {
-          return message.reply(`The language you chose (${targetLanguage}) is currently not supported.`)
-      }
+    const targetLanguage = arguments[0].toLowerCase()
+    if (!languages.includes(targetLanguage)) {
+      message.reply('That language is not supported.')
+      return
+    }
 
-      await languageSchema.findOneAndUpdate({
-          _id: guild.id
-      }, {
-          _id: guild.id,
-          language: targetLanguage
-      }, {
-          upsert: true
-      })
+    setLanguage(guild, targetLanguage)
 
-      message.reply(`The language has been set to ${targetLanguage}`).then((message) => {
-        const seconds = 5
-        message.delete({
-              timeout: 1000 * seconds
+        await languageSchema.findOneAndUpdate(
+          {
+            _id: guild.id,
+          },
+          {
+            _id: guild.id,
+            language: targetLanguage,
+          },
+          {
+            upsert: true,
+          }
+        )
+
+        message.reply(`Language set to ${targetLanguage}!`).then((message) => {
+          const seconds = 3
+          message.delete({
+            timeout: 1000 * seconds,
           })
-      })
-    },
-  }
+        })
+      
+  },
+}

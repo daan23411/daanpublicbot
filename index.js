@@ -13,10 +13,13 @@ const inviteNotifications = require('./indexFiles/invite-notifications')
 const loadCommands = require('./commands/load-commands')
 const levels = require('./indexFiles/levels')
 const commandBase = require('./commands/command-base')
+const { loadLanguages } = require('./indexFiles/language')
 
 
 client.on('ready', async () => {
     commandBase.loadPrefixes(client)
+
+    loadLanguages(client)
 
     loadCommands(client)
 

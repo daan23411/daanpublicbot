@@ -1,9 +1,9 @@
 {
-    "languages": ["english", "dutch"],
-    "translation": {
+    "languages": ["english", "nederlands"],
+    "translations": {
         "THE_SUM_IS": {
             "english": "the sum is",
-            "dutch": "de som is"
+            "nederlands": "de som is"
         }
     }
 }

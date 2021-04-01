@@ -1,9 +1,12 @@
+const mongo = require('../../mongo')
+const warnSchema = require('../../schemas/warn-schema')
+
 module.exports = {
     commands: 'warn',
     minArgs: '2',
     expectedArgs: '<Mention> <reason>',
-    callback: (message, arguments) => {
-        const target = message.mentions.user.first()
+    callback: async (message, arguments) => {
+        const target = message.mentions.users.first()
         if(!target) { 
             return message.reply('Please specify someone to warn')
         }
@@ -13,7 +16,30 @@ module.exports = {
         const guildId = message.guild.id
         const userId = message.member.id
         const reason = arguments.join(' ')
+    
+        const warning = {
+            author: message.member.user.tag,
+            timestamp: new Date().getTime(),
+            reason
+        }
 
-        console.log(guiildId, userId, reason)
+        await mongo().then(async mongoose => {
+            try {
+                await warnSchema.findOneAndUpdate({
+                    guildId,
+                    userId
+                }, {
+                    guildId,
+                    userId,
+                    $push: {
+                        warnings: warning
+                    }
+                }, {
+                    upsert: true
+                })
+            } finally {
+                mongoose.connection.close
+            }
+        })
     }
 }

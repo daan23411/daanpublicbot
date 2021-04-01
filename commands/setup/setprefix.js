@@ -9,7 +9,8 @@ module.exports = {
   commands: 'setprefix',
   minArgs: 1,
   maxArgs: 1,
-  expectedArgs: "<This bot's new command prefix>",
+  expectedArgs: "<new prefix>",
+  description: "Change the current prefix.",
   permissionError: 'You must be an admin to run this command.',
   permissions: 'ADMINISTRATOR',
   callback: async (message, arguments, text) => {

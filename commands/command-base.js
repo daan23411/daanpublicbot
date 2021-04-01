@@ -1,5 +1,5 @@
 const mongo = require('../mongo')
-const prefixSchema = require('../schemas/prefix-schema')
+const PrefixSchema = require('../schemas/prefix-schema')
 const { prefix: globalPrefix } = require('../config.json')
 const guildPrefixes = {} // { 'guildId' : 'prefix' }
 
@@ -146,11 +146,10 @@ module.exports.loadPrefixes = async (client) => {
       for (const guild of client.guilds.cache) {
         const guildId = guild[1].id
 
-        const result = await prefixSchema.findOne({ _id: guildId })
+        const result = await PrefixSchema.findOne({ _id: guildId })
         guildPrefixes[guildId] = result.prefix
       }
 
-      console.log(guildPrefixes)
     } finally {
       mongoose.connection.close()
     }

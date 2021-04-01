@@ -4,18 +4,12 @@ client.setMaxListeners(5000)
 
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./indexFiles/first-message')
-const privateMessage = require('./indexFiles/private-message')
-const roleClaim = require('./indexFiles/role-claim')
 const poll = require('./indexFiles/poll')
 const memberCount = require('./indexFiles/member-count')
-const sendMessage = require('./indexFiles/send-message')
 const mongo = require('./mongo')
 const messageCount = require('./indexFiles/message-counter')
-const mute = require('./indexFiles/mute')
 const antiAd = require('./indexFiles/anti-ad')
 const inviteNotifications = require('./indexFiles/invite-notifications')
-const welcome = require('./indexFiles/welcome')
 const loadCommands = require('./commands/load-commands')
 const levels = require('./indexFiles/levels')
 const commandBase = require('./commands/command-base')
@@ -29,8 +23,6 @@ client.on('ready', async () => {
     levels(client)
 
     inviteNotifications(client)
-
-    welcome(client)
 
     antiAd(client)
 
@@ -47,40 +39,8 @@ client.on('ready', async () => {
 
     memberCount(client)
 
-    roleClaim(client)
-
     poll(client)
 
-   // firstMessage(client, '805216410703364107', 'hello world!!!', ['🔥', '🍉'])
-
-    privateMessage(client, 'ping', 'Pong!')
-
-    privateMessage(client, 'help', 'DM a staff member to get help.')
-
-    command(client, 'servers', message => {
-        client.guilds.cache.forEach((guild) => {
-            message.channel.send(`${guild.name} has a total of ${guild.memberCount} members`)
-        })
-    })
-
-    command(client, ['cc', 'clearchannel'], (message) => {
-        if (message.member.hasPermission("ADMINISTRATOR")) {
-            message.channel.messages.fetch().then((results) => {
-                message.channel.bulkDelete(results)
-            })
-        }
-    })
-
-    command(client, 'setstatus', (message) => {
-        const content = message.content.replace('!setstatus ', '')
-
-        client.user.setPresence({
-            activity: {
-                name: content,
-                type: 0,
-            },
-        })
-    })
 
     command(client, 'serverinfo', message => {
         const { guild } = message
@@ -126,8 +86,8 @@ client.on('ready', async () => {
 
 
         message.channel.send(embed)
-        console.log('The client is ready!')
     })
+    console.log('The client is ready!')
 });
 
 client.login(config.token)

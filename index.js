@@ -1,20 +1,22 @@
+require('module-alias/register')
+
 const Discord = require('discord.js')
 const client = new Discord.Client()
 client.setMaxListeners(5000)
 
-const config = require('./config.json')
-const command = require('./command')
-const poll = require('./indexFiles/poll')
-const memberCount = require('./indexFiles/member-count')
-const mongo = require('./mongo')
-const messageCount = require('./indexFiles/message-counter')
-const antiAd = require('./indexFiles/anti-ad')
-const inviteNotifications = require('./indexFiles/invite-notifications')
-const loadCommands = require('./commands/load-commands')
-const levels = require('./indexFiles/levels')
-const commandBase = require('./commands/command-base')
-const { loadLanguages } = require('./indexFiles/language')
-
+const config = require('@root/config.json')
+const command = require('@util/command')
+const poll = require('@features/poll')
+const memberCount = require('@features/member-count')
+const mongo = require('@util/mongo')
+const messageCount = require('@features/message-counter')
+const antiAd = require('@features/anti-ad')
+const inviteNotifications = require('@features/invite-notifications')
+const loadCommands = require('@root/commands/load-commands')
+const levels = require('@features/levels')
+const commandBase = require('@root/commands/command-base')
+const { loadLanguages } = require('@util/language')
+const loadFeatures = require('@root/features/load-features')
 
 client.on('ready', async () => {
     commandBase.loadPrefixes(client)
@@ -22,6 +24,7 @@ client.on('ready', async () => {
     loadLanguages(client)
 
     loadCommands(client)
+    loadFeatures(client)
 
     levels(client)
 
@@ -36,53 +39,7 @@ client.on('ready', async () => {
     memberCount(client)
 
     poll(client)
-
-
-    command(client, 'serverinfo', message => {
-        const { guild } = message
-
-        const { name, region, memberCount, owner, afkTimeout, createdAt, premiumTier, vanityURLCode } = guild
-        const icon = guild.iconURL()
-
-        let embed = new Discord.MessageEmbed()
-            .setTitle(`Server info for "${name}"`)
-            .setThumbnail(icon)
-            .addFields(
-                {
-                    name: 'Region',
-                    value: region
-                },
-                {
-                    name: 'Members',
-                    value: memberCount
-                },
-                {
-                    name: 'Owner',
-                    value: owner.user.tag
-                },
-                {
-                    name: 'AFK Timeout',
-                    value: afkTimeout / 60
-                }, 
-                {
-                    name: 'Boost Tier',
-                    value: premiumTier
-                },
-                {
-                    name: 'Created At',
-                    value: createdAt
-                },
-                {
-                    name: 'Vanity URL:',
-                    value: vanityURLCode
-                                       
-                })
-            .setColor('RANDOM')
-            .setTimestamp();
-
-
-        message.channel.send(embed)
-    })
+    
     console.log('The client is ready!')
 });
 

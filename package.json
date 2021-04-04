@@ -12,9 +12,18 @@
   "author": "daan2341#6969",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "discord.js": "^12.5.3",
+    "discord.js-commando": "^0.12.3",
+    "module-alias": "^2.2.2",
     "mongoose": "^5.12.2",
     "redis": "^3.0.2"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@schemas": "./schemas",
+    "@util": "./util",
+    "@features": "./features/features",
+    "@commands": "./commands/commands"
   },
   "devDependencies": {},
   "repository": {

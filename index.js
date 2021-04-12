@@ -1,9 +1,13 @@
 require('module-alias/register')
 
-const Discord = require('discord.js')
-const client = new Discord.Client()
+const { MessageEmbed, MessageCollector, Client} = require('discord.js')
+const cooldown = new Set()  
+const client = new Client({
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+})
 client.setMaxListeners(5000)
 
+const TicketData = require('@schemas/ticketData')
 const config = require('@root/config.json')
 const command = require('@util/command')
 const poll = require('@features/poll')
@@ -41,6 +45,72 @@ client.on('ready', async () => {
     poll(client)
     
     console.log('The client is ready!')
+
+    client.on('messageReactionAdd', async (client, message, args) => {
+        	if (client) return;
+
+            if(reaction.message.partial) await reaciton.message.fetch();
+            if(reaction.partial) await reaction.fetch();
+
+            if(reaction.message.guild) return;
+
+            const data = await TicketData.findOne({ GuildID: reaction.message.guild.id })
+            if(!data) return;
+            if(reaction.message.partial) await reaction.message.fetch()
+
+            if(reaction.emoji.name === '🎫' && reaction.message.id === data.MessageID) {
+                if(cooldown.has(message.member.id)) {
+                    reaction.message.memberd.remove(message.member.id)
+                    return
+                }
+                data.TicketNumber += 1;
+                await data.save()
+                const channel = await reaction.message.guild.channels.create(`ticket-${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNumber}`, {
+                    type: 'text',
+                    permissionOverwrites: [{
+                        id: reaction.message.member.id,
+                        deny: ['VIEW_CHANNEL'],
+                    },],
+                });
+                await channel.createOverwrite(message.member, {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true,
+                    SEND_TTS_MESSAGES: false
+                });
+                await channel.createOverwrite(date.whitelistedRole, {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true,
+                    SEND_TTS_MESSAGES: false
+                });
+                reaction.message.members.remove(message.member.id);
+                const successEmbed = new MessageEmbed()
+                .setTitle(`Ticket #${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNUmber}`)
+                .setDescription(`This ticket was created by ${message.member.toString()}. Please explain your question so a staff member can help you faster. A staff member will be here shortly. If you are finished, please say \`done\`.`)
+                .setColor('RANDOM')
+                let succesMsg = await channel.send(`${message.member.toString()}`, successEmbed)
+                await cooldown.add(message.member.id)
+                await checkIfClose(client, reaction, message.member, successMsg, channel)
+                setTimeout(function () {
+                    cooldown.delete(message.member.id)
+                }, 30000);
+            }
+            async function checkIfClose(client, reaction, user, successMsg, channel) {
+                const filter = m => m.content.toLowerCase() === 'done'
+                const collector = new MessageCollector(channel, filter)
+
+                collector.on('collect', async msg => {
+                    channel.send(`This channel will be deleted in **10** seconds. Please type cancel to cancel this action`)
+                    if(m => m.content.toLowerCase() === 'cancel') {
+                        collector.stop()
+                        return message.channel.send('Okay. I canceled this action.')
+                    }
+                    await collector.stop()
+                    setTimeout(function () {
+                        channel.delete()
+                    }, 10000);
+                })
+            }
+    })
 });
 
 client.login(config.token)

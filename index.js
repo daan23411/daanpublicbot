@@ -1,15 +1,20 @@
 require('module-alias/register')
 
-const { MessageEmbed, MessageCollector, Client} = require('discord.js')
-const cooldown = new Set()  
-const client = new Client({
-    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+// const discord = require('discord.js')
+const cooldown = new Set()
+const config = require('@root/config.json')  
+// const client = new Client({
+//     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+// })
+const path = require('path')
+const Commando = require('discord.js-commando')
+const client = new Commando.CommandoClient({
+    owner: '501700626690998280',
+    commandPrefix: config.prefix
 })
 client.setMaxListeners(5000)
 
 const TicketData = require('@schemas/ticketData')
-const config = require('@root/config.json')
-const command = require('@util/command')
 const poll = require('@features/poll')
 const memberCount = require('@features/member-count')
 const mongo = require('@util/mongo')
@@ -23,11 +28,18 @@ const { loadLanguages } = require('@util/language')
 const loadFeatures = require('@root/features/load-features')
 
 client.on('ready', async () => {
-    commandBase.loadPrefixes(client)
-
+    // commandBase.loadPrefixes(client)
+    client.registry
+    .registerGroups([
+        ['misc', 'Misc commands'],
+        ['moderation', 'Moderation commands']
+    ])
+    .registerDefaults()
+    .registerCommandsIn(path.join(__dirname, 'cmds'))
+    
     loadLanguages(client)
 
-    loadCommands(client)
+    // loadCommands(client)
     loadFeatures(client)
 
     levels(client)
@@ -85,7 +97,7 @@ client.on('messageReactionAdd', async (reaction, client, message ) => {
             SEND_TTS_MESSAGES: false
         });
         reaction.message.members.remove(message.member.id);
-        const successEmbed = new MessageEmbed()
+        const successEmbed = new discord.MessageEmbed()
         .setTitle(`Ticket #${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNUmber}`)
         .setDescription(`This ticket was created by ${message.member.toString()}. Please explain your question so a staff member can help you faster. A staff member will be here shortly. If you are finished, please say \`done\`.`)
         .setColor('RANDOM')
@@ -98,7 +110,7 @@ client.on('messageReactionAdd', async (reaction, client, message ) => {
     }
     async function checkIfClose(client, reaction, user, successMsg, channel) {
         const filter = m => m.content.toLowerCase() === 'done'
-        const collector = new MessageCollector(channel, filter)
+        const collector = new discord.MessageCollector(channel, filter)
 
         collector.on('collect', async msg => {
             channel.send(`This channel will be deleted in **10** seconds. Please type cancel to cancel this action`)

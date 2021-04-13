@@ -74,7 +74,7 @@ module.exports = {
         } else {
             TicketData.findOneAndRemove({ GuildID: message.guild.id});
             message.channel.send(`**Successfully reset the ticket system on your server!**\nPlease run this command again to set it up again.`)   
-        }
+        } 
     },
 }
 

@@ -1,10 +1,8 @@
 const mongoose = require('mongoose')
 
-const TicketDataSchema = mongoose.Schema({
-    MessageID: String,
+const ticketDataSchema = mongoose.Schema({
     GuildID: String,
     TicketNumber: Number,
-    WhitelistedRole: String
 })
 
-module.exports = mongoose.model('Ticket-Setup', TicketDataSchema)
+module.exports = mongoose.model('Ticket-Setup', ticketDataSchema)

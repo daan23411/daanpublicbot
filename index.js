@@ -48,6 +48,7 @@ client.on('ready', async () => {
 });
 
 client.on('messageReactionAdd', async (reaction, client, message ) => {
+    console.log(reaction)
     if (client.bot) return;
 
     if(reaction.message.partial) await reaction.message.fetch();

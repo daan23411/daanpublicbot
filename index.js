@@ -47,7 +47,8 @@ client.on('ready', async () => {
     console.log('The client is ready!')
 
     client.on('messageReactionAdd', async (client, message, args) => {
-        	if (client) return;
+        	if (client.bot) return;
+            const reaction = message.reactions;
 
             if(reaction.message.partial) await reaciton.message.fetch();
             if(reaction.partial) await reaction.fetch();

@@ -38,7 +38,6 @@ const { loadLanguages } = require('@util/language')
 const loadFeatures = require('@root/features/load-features')
 
 client.on('ready', async () => {
-    // commandBase.loadPrefixes(client)
     client.registry
         .registerGroups([
             ['misc', 'Misc commands'],

@@ -1,13 +1,20 @@
 const Discord = require('discord.js')
+const Commando = require('discord.js-commando')
 
-module.exports = {
-    commands: ['serverinfo', 'si'],
-    description: 'Get some info about the server.',
-    callback: (message, arguments, text, client) => {
+module.exports = class ServerInfoCommand extends Commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'serverinfo',
+            aliases: ['si'],
+            group: 'info',
+            memberName: 'serverinfo',
+            description: 'Displays the server information of the current guild'
+        })
+    }
+
+    async run(message, args) {
         const { guild } = message
-        con
-
-        const { name, region, memberCount, owner, afkTimeout, createdAt, premiumTier, vanityURLCode } = guild
+        const { name, region, memberCount, owner, afkTimeout, createdTimestamp, premiumTier, vanityURLCode } = guild
         const icon = guild.iconURL()
 
         let embed = new Discord.MessageEmbed()
@@ -36,7 +43,10 @@ module.exports = {
                 },
                 {
                     name: 'Created At',
-                    value: createdAt
+                    value: new Date(createdTimestamp).toLocaleDateString()
+                }, {
+                    name: 'Vanity URL',
+                    value: vanityURLCode || 'None'
                 })
             .setColor('RANDOM')
             .setTimestamp();

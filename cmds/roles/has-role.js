@@ -1,18 +1,26 @@
-module.exports = {
-    commands: 'hasrole',
-    description: "Check if someone has a specific role",
-    minArgs: 2,
-    expectedArgs: "<User's @> <Role Name>",
-    permissions: "MANAGE_ROLES",
-    callback: async (message, arguments) => {
+const Commando = require('discord.js-commando')
+
+module.exports = class HasRoleCommand extends Commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'hasrole',
+            aliases: ['hr', 'hasr', 'hrole'],
+            group: 'roles',
+            memberName: 'hasrole',
+            description: 'Check if someone has a specific role',
+            argsType: 'multiple'
+        })
+    }
+
+    async run(message, args) {
         const targetUser = message.mentions.users.first()
         if (!targetUser) {
             return message.reply('Please specify someone to give a role to.')
         }
 
-        arguments.shift()
+        args.shift()
 
-        const roleName = arguments.join(' ')
+        const roleName = args.join(' ')
         const { guild } = message
 
         const role = guild.roles.cache.find((role) => {

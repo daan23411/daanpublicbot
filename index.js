@@ -31,24 +31,22 @@ const mongo = require('@util/mongo')
 const messageCount = require('@features/message-counter')
 const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
-const loadCommands = require('@root/commands/load-commands')
 const levels = require('@features/levels')
-const commandBase = require('@root/commands/command-base')
-const { loadLanguages } = require('@util/language')
 const loadFeatures = require('@root/features/load-features')
 
 client.on('ready', async () => {
     client.registry
         .registerGroups([
             ['misc', 'Misc commands'],
-            ['moderation', 'Moderation commands']
+            ['moderation', 'Moderation commands'],
+            ['economy', 'Economy commands'],
+            ['info', 'Info commands'],
+            ['roles', 'Roles commands'],
+            ['setup', 'Setup commands']
         ])
         .registerDefaults()
         .registerCommandsIn(path.join(__dirname, 'cmds'))
-
-    loadLanguages(client)
-
-    // loadCommands(client)
+        
     loadFeatures(client)
 
     levels(client)

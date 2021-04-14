@@ -1,8 +1,17 @@
-module.exports = {
-    commands: 'invites',
-    description: 'See who has the most invites!',
-    callback: (message) => {
-      const { guild } = message
+const Commando = require('discord.js-commando')
+
+module.exports = class InvitesCommand extends Commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'invites',
+            group: 'info',
+            memberName: 'invites',
+            description: 'See who has the most invites'
+        })
+    }
+
+    async run(message, args) {
+        const { guild } = message
   
       guild.fetchInvites().then((invites) => {
         const inviteCounter = {}
@@ -31,5 +40,5 @@ module.exports = {
   
         message.reply(replyText + `\n**NOTE:** If you have less then 3 invites it is going to say undefined. Do not be botherd with this. Do not report this as this ain't an issue`)
       })
-    },
-  }
+    }
+}

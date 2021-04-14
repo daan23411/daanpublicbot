@@ -1,11 +1,17 @@
-const warnSchema = require('@schemas/warn-schema')
+const Commando = require('discord.js-commando')
 
-module.exports = {
-    commands: 'warns',
-    minArgs: '1',
-    expectedArgs: '<Mention>',
-    description: 'Get a list of someones warns.',
-    callback: async (message, arguments, text) => {
+module.exports = class WarnsCommand extends Commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'warns',
+            group: 'moderation',
+            memberName: 'warns',
+            description: 'See someones warns.',
+            argsType: 'single'
+        })
+    }
+
+    async run(message, args) {
         const target = message.mentions.users.first()
         if (!target) {
             return message.reply('Please specify someone to warn')

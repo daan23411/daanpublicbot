@@ -1,12 +1,23 @@
 const { MessageEmbed, MessageCollector } = require('discord.js')
 const TicketData = require('@schemas/ticketData')
 
-module.exports = {
-    commands: 'setticket',
-    description: "Setup the ticket system of the bot.",
-    permissionError: 'You must be an admin to run this command.',
-    permissions: 'ADMINISTRATOR',
-    callback: async (message, arguments, text) => {
+const Commando = require('discord.js-commando')
+
+module.exports = class SetTicketCommand extends Commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'setticket',
+            group: 'setup',
+            memberName: 'setticket',
+            description: 'Setup the ticket system.',
+            argsType: 'multiple',
+            userPermissions: [
+                'ADMINISTRATOR'
+            ]
+        })
+    }
+
+    async run(message, args) {
         let ticketData = await TicketData.findOne({ GuildID: message.guild.id });
 
         if (!ticketData) {
@@ -74,8 +85,8 @@ module.exports = {
         } else {
             TicketData.findOneAndRemove({ GuildID: message.guild.id});
             message.channel.send(`**Successfully reset the ticket system on your server!**\nPlease run this command again to set it up again.`)   
-        } 
-    },
+        }
+    }
 }
 
 async function createTicketSystem(ticketData, embedDescription, embedChannel, message, savedRole) {

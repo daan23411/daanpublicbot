@@ -12,6 +12,7 @@
   "author": "daan2341#6969",
   "license": "ISC",
   "dependencies": {
+    "commando-provider-mongo": "^2.1.0",
     "discord.js": "^12.5.3",
     "discord.js-commando": "git+https://github.com/discordjs/commando.git",
     "module-alias": "^2.2.2",

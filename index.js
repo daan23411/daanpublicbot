@@ -2,16 +2,26 @@ require('module-alias/register')
 
 // const discord = require('discord.js')
 const cooldown = new Set()
-const config = require('@root/config.json')  
+const config = require('@root/config.json')
 // const client = new Client({
 //     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 // })
+const { MongoClient } = require('mongodb')
+const { MongoDBProvider } = require('commando-provider-mongo')
 const path = require('path')
 const Commando = require('discord.js-commando')
 const client = new Commando.CommandoClient({
     owner: '501700626690998280',
-    commandPrefix: config.prefix
+    commandPrefix: config.prefix,
+    partials: ['MESSAGE', 'REACTION', 'CHANNEL']
 })
+client.setProvider(
+    MongoClient.connect(config.MongoPath, {
+        useUnifiedTopology: true
+    }).then((client) => {
+        return new MongoDBProvider(client, 'Data')
+    })
+)
 client.setMaxListeners(5000)
 
 const TicketData = require('@schemas/ticketData')
@@ -30,13 +40,13 @@ const loadFeatures = require('@root/features/load-features')
 client.on('ready', async () => {
     // commandBase.loadPrefixes(client)
     client.registry
-    .registerGroups([
-        ['misc', 'Misc commands'],
-        ['moderation', 'Moderation commands']
-    ])
-    .registerDefaults()
-    .registerCommandsIn(path.join(__dirname, 'cmds'))
-    
+        .registerGroups([
+            ['misc', 'Misc commands'],
+            ['moderation', 'Moderation commands']
+        ])
+        .registerDefaults()
+        .registerCommandsIn(path.join(__dirname, 'cmds'))
+
     loadLanguages(client)
 
     // loadCommands(client)
@@ -55,25 +65,25 @@ client.on('ready', async () => {
     memberCount(client)
 
     poll(client)
-    
+
     console.log('The client is ready!')
 });
 
-client.on('messageReactionAdd', async (reaction, client, message ) => {
+client.on('messageReactionAdd', async (reaction, client, message) => {
     console.log(reaction)
     if (client.bot) return;
 
-    if(reaction.message.partial) await reaction.message.fetch();
-    if(reaction.partial) await reaction.fetch();
+    if (reaction.message.partial) await reaction.message.fetch();
+    if (reaction.partial) await reaction.fetch();
 
-    if(reaction.message.guild) return;
+    if (reaction.message.guild) return;
 
     const data = await TicketData.findOne({ GuildID: reaction.message.guild.id })
-    if(!data) return;
-    if(reaction.message.partial) await reaction.message.fetch()
+    if (!data) return;
+    if (reaction.message.partial) await reaction.message.fetch()
 
-    if(reaction.emoji.name === '🎫' && reaction.message.id === data.MessageID) {
-        if(cooldown.has(message.member.id)) {
+    if (reaction.emoji.name === '🎫' && reaction.message.id === data.MessageID) {
+        if (cooldown.has(message.member.id)) {
             reaction.message.memberd.remove(message.member.id)
             return
         }
@@ -98,9 +108,9 @@ client.on('messageReactionAdd', async (reaction, client, message ) => {
         });
         reaction.message.members.remove(message.member.id);
         const successEmbed = new discord.MessageEmbed()
-        .setTitle(`Ticket #${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNUmber}`)
-        .setDescription(`This ticket was created by ${message.member.toString()}. Please explain your question so a staff member can help you faster. A staff member will be here shortly. If you are finished, please say \`done\`.`)
-        .setColor('RANDOM')
+            .setTitle(`Ticket #${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNUmber}`)
+            .setDescription(`This ticket was created by ${message.member.toString()}. Please explain your question so a staff member can help you faster. A staff member will be here shortly. If you are finished, please say \`done\`.`)
+            .setColor('RANDOM')
         let succesMsg = await channel.send(`${message.member.toString()}`, successEmbed)
         await cooldown.add(message.member.id)
         await checkIfClose(client, reaction, message.member, successMsg, channel)
@@ -114,7 +124,7 @@ client.on('messageReactionAdd', async (reaction, client, message ) => {
 
         collector.on('collect', async msg => {
             channel.send(`This channel will be deleted in **10** seconds. Please type cancel to cancel this action`)
-            if(m => m.content.toLowerCase() === 'cancel') {
+            if (m => m.content.toLowerCase() === 'cancel') {
                 collector.stop()
                 return message.channel.send('Okay. I canceled this action.')
             }

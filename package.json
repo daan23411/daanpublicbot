@@ -1,6 +1,6 @@
 {
   "name": "daanpublicbot",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "description": "test bot for another series",
   "main": "index.js",
   "scripts": {

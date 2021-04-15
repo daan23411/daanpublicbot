@@ -4,6 +4,7 @@ module.exports = class InvitesCommand extends Commando.Command {
     constructor(client) {
         super(client, {
             name: 'invites',
+            guildOnly: true,
             group: 'info',
             memberName: 'invites',
             description: 'See who has the most invites'

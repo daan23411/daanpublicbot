@@ -6,6 +6,7 @@ module.exports = class BotInfoCommand extends Commando.Command {
     constructor(client) {
         super(client, {
             name: 'userinfo',
+            guildOnly: false,
             group: 'info',
             memberName: 'userinfo',
             description: 'Displays useful information about a user',
@@ -13,9 +14,6 @@ module.exports = class BotInfoCommand extends Commando.Command {
     }
 
     run = async (message) => {
-        if (message.channel.type === 'dm') {
-            return message.channel.send(`This command cannot be executed within a DM.`)
-        }
 
         const { guild } = message
 

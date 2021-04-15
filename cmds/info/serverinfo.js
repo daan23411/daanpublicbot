@@ -5,6 +5,7 @@ module.exports = class ServerInfoCommand extends Commando.Command {
     constructor(client) {
         super(client, {
             name: 'serverinfo',
+            guildOnly: true,
             aliases: ['si'],
             group: 'info',
             memberName: 'serverinfo',

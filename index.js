@@ -36,6 +36,8 @@ const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
 
 client.on('ready', async () => {
+    client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'dnd'})
+
     client.registry
         .registerGroups([
             ['misc', 'Misc commands'],

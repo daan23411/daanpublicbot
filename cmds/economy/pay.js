@@ -21,7 +21,7 @@ module.exports = class PayCommand extends Commando.Command {
             return
         }
 
-        const coinsToGive = arguments[1]
+        const coinsToGive = args[1]
         if (isNaN(coinsToGive)) {
             message.reply('Please provide a valid number of coins to give.')
             return

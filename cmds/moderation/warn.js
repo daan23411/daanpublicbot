@@ -20,15 +20,18 @@ module.exports = class WarnCommand extends Commando.Command {
         if (!target) {
             return message.reply('Please specify someone to warn')
         }
+        if (args.length < 2) {
+            return message.reply('Please specify a reason to warn this user')
+        }
 
-        arguments.shift()
+        args.shift()
 
         const guildId = message.guild.id
-        const userId = message.member.id
-        const reason = arguments.join(' ')
+        const userId = target.id
+        const reason = args.join(' ')
 
         const warning = {
-            author: message.member.user.tag,
+            author: message.author.tag,
             timestamp: new Date().getTime(),
             reason
         }
@@ -46,5 +49,7 @@ module.exports = class WarnCommand extends Commando.Command {
         }, {
             upsert: true
         })
+
+        message.reply(`I have warned <@${target.id}> for ${reason}`)
     }
 }

@@ -21,9 +21,9 @@ module.exports = class RemoveRoleCommand extends Commando.Command {
             return message.reply('Please specify someone to give a role to.')
         }
 
-        arguments.shift()
+        args.shift()
 
-        const roleName = arguments.join(' ')
+        const roleName = args.join(' ')
         const { guild } = message
 
         const role = guild.roles.cache.find((role) => {

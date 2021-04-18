@@ -48,7 +48,7 @@ client.on('guildCreate', guild => {
 })
 
 client.on('ready', async () => {
-    client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'dnd'})
+    client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'online'})
 
     client.registry
         .registerGroups([

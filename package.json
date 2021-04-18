@@ -1,6 +1,6 @@
 {
   "name": "doubtbot",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "test bot for another series",
   "main": "index.js",
   "scripts": {

@@ -7,7 +7,7 @@ module.exports = class AddBalanceCommand extends Commando.Command {
             name: 'addbalance',
             aliases: ['addbal'],
             group: 'economy',
-            memberName: 'add-balance',
+            memberName: 'addbalance',
             description: 'add coins to someone\'s balance.',
             argsType: 'multiple',
             userPermissions: [
@@ -24,7 +24,7 @@ module.exports = class AddBalanceCommand extends Commando.Command {
       return
     }
 
-    const coins = arguments[1]
+    const coins = args[1]
 
     const guildId = message.guild.id
     const userId = mention.id

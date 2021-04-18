@@ -3,9 +3,7 @@ const muteSchema = require('@schemas/mute-schema')
 
 const reasons = {
     SPAMMING: 5,
-    ADVERTISING: 24,
-    THREATS: -1,
-    LIFETIME: -1
+    ADVERTISING: 24
 }
 
 module.exports = class AddCommand extends Commando.Command {
@@ -61,7 +59,6 @@ module.exports = class AddCommand extends Commando.Command {
         }
 
         let duration = reasons[reason] * (previousMutes + 1)
-
         const expires = new Date()
         expires.setHours(expires.getHours() + duration)
 

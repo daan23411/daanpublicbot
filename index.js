@@ -34,6 +34,7 @@ const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
+const mute = require('@features/moderation/mute')
 
 client.on('ready', async () => {
     client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'dnd'})
@@ -50,6 +51,8 @@ client.on('ready', async () => {
         .registerDefaults()
         .registerCommandsIn(path.join(__dirname, 'cmds'))
 
+    mute(client)
+    
     loadFeatures(client)
 
     levels(client)

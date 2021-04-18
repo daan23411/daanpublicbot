@@ -6,7 +6,7 @@ const rpc = new RPC.Client({
 rpc.on("ready", () => {
     rpc.setActivity({
         details: "Doubt Discord bot",
-        state: 'Best All-Round discord bot of this year!',
+        state: 'Coding at the moment please expect restarts!',
         startTimestamp: new Date(),
         largeImageKey: "doubt",
         largeImageText: "Invite Him now!",

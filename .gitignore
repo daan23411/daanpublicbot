@@ -1,3 +1,4 @@
 node_modules
 config.json
 ./features/features/rpc
+features/features/rpc.js

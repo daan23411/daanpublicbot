@@ -27,7 +27,6 @@ client.setMaxListeners(5000)
 
 const TicketData = require('@schemas/ticketData')
 const poll = require('@features/poll')
-const memberCount = require('@features/member-count')
 const mongo = require('@util/mongo')
 const messageCount = require('@features/message-counter')
 const antiAd = require('@features/anti-ad')
@@ -35,6 +34,18 @@ const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
 const mute = require('@features/moderation/mute')
+
+client.on('guildCreate', guild => {
+    let embed = new discord.MessageEmbed()
+    .setTitle('Thanks for inviting me!')
+    .setDescription(`Here is some information about me. Please run !help to get all available commands. \n\nMy owner is daan2341#8196. \nI am Doubt and I will be assisting you in this guild. \nIf you find any bugs please report them at "https://github.com/daan23411/doubt-discord-bot/issues". \nIf you have any suggestions for features, mute reasons or anything else please also put them on the github. \nBefore I forget. You can change my prefix with the !prefix command :)`)
+    .setColor('RANDOM')
+    .setTimestamp()
+    
+
+    const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+    channel.send(embed)
+})
 
 client.on('ready', async () => {
     client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'dnd'})
@@ -64,8 +75,6 @@ client.on('ready', async () => {
     await mongo(client)
 
     messageCount(client)
-
-    memberCount(client)
 
     poll(client)
 

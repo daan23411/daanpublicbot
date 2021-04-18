@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const Commando = require('discord.js-commando')
 
 module.exports = class ServerInfoCommand extends Commando.Command {
@@ -18,7 +18,7 @@ module.exports = class ServerInfoCommand extends Commando.Command {
         const { name, region, memberCount, owner, afkTimeout, createdTimestamp, premiumTier, vanityURLCode } = guild
         const icon = guild.iconURL()
 
-        let embed = new Discord.MessageEmbed()
+        let embed = new MessageEmbed()
             .setTitle(`Server info for "${name}"`)
             .setThumbnail(icon)
             .addFields(

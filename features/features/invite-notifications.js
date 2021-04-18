@@ -40,7 +40,6 @@ module.exports = client => {
         let data = cache[guild.id]
     
         if (!data) {
-            console.log('FETCHING FROM DATABASE')
     
             
                 try {

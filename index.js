@@ -1,6 +1,7 @@
 require('module-alias/register')
 
-// const discord = require('discord.js')
+
+const discord = require('discord.js')
 const cooldown = new Set()
 const config = require('@root/config.json')
 // const client = new Client({
@@ -46,7 +47,7 @@ client.on('ready', async () => {
         ])
         .registerDefaults()
         .registerCommandsIn(path.join(__dirname, 'cmds'))
-        
+
     loadFeatures(client)
 
     levels(client)

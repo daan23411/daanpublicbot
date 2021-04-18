@@ -1,6 +1,6 @@
 {
   "name": "doubtbot",
-  "version": "1.4.2",
+  "version": "1.4.4",
   "description": "test bot for another series",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daan23411/daanpublicbot"
+    "url": "git+https://github.com/daan23411/daanpublicbot.git"
   },
   "bugs": {
     "url": "https://github.com/daan23411/daanpublicbot/issues"

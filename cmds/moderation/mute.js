@@ -6,7 +6,7 @@ const reasons = {
     ADVERTISING: 24
 }
 
-module.exports = class AddCommand extends Commando.Command {
+module.exports = class MuteCommand extends Commando.Command {
     constructor(client) {
         super(client, {
             name: 'mute',
@@ -58,7 +58,7 @@ module.exports = class AddCommand extends Commando.Command {
             return message.reply(`I can't mute <@${target.id}> because he is already muted.`)
         }
 
-        let duration = reasons[reason] * (previousMutes + 1)
+        let duration = reasons[reason] * (previousMutes.length + 1)
         const expires = new Date()
         expires.setHours(expires.getHours() + duration)
 

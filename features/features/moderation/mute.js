@@ -1,6 +1,11 @@
 const muteSchema = require('@schemas/mute-schema')
 
 module.exports = client => {
+    const checkMutes = () => {
+        setTimeout(checkMutes, 1000 * 60)
+    }
+    checkMutes()
+
     client.on('guildMemberAdd', async member => {
         const {guild, id} = member
 

@@ -9,3 +9,5 @@ Owner: daan2341#8196
 
 If any bugs please report in issues
 If any suggestions please join our support server (Soon) or post them in issues
+
+[![Discord Bots](https://top.gg/api/widget/servers/757520713790914560.svg)](https://top.gg/bot/757520713790914560)

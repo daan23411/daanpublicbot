@@ -18,7 +18,7 @@ module.exports = class AddCommand extends Commando.Command {
         let amount = args[0]
 
         message.channel.bulkDelete(amount)
-        message.channel.send(`I deleted ${amount} message(s) in this channel`).then(message.delete({ timeout: 5000 }))
+        message.channel.send(`I deleted ${amount} message(s) in this channel`)message.delete({ timeout: 5000 })
         
     }
 }

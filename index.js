@@ -48,7 +48,7 @@ client.on('guildCreate', guild => {
 })
 
 client.on('ready', async () => {
-    client.user.setPresence({ activity: { name: 'DO NOT USE! CURRENTLY UPDATING!'},  status: 'online'})
+    client.user.setPresence({ activity: { name: 'with my owner!'},  status: 'online'})
 
     client.registry
         .registerGroups([

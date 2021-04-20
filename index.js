@@ -47,8 +47,9 @@ client.on('guildCreate', guild => {
     channel.send(embed)
 })
 
-client.on('ready', async () => {
-    client.user.setPresence({ activity: { name: 'with my owner!'},  status: 'online'})
+client.on('ready', async (guild) => {
+
+    client.user.setPresence({ activity: { name: `${config.prefix}help`, type: 'LISTENING'},  status: 'online'})
 
     client.registry
         .registerGroups([

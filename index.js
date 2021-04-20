@@ -48,7 +48,7 @@ client.on('guildCreate', guild => {
 })
 
 client.on('ready', async () => {
-    client.user.setPresence({ activity: { name: 'With my bot owner'}, status: 'online'})
+    client.user.setPresence({ activity: { name: 'DO NOT USE! CURRENTLY UPDATING!'},  status: 'online'})
 
     client.registry
         .registerGroups([
@@ -57,7 +57,8 @@ client.on('ready', async () => {
             ['economy', 'Economy commands'],
             ['info', 'Info commands'],
             ['roles', 'Roles commands'],
-            ['setup', 'Setup commands']
+            ['setup', 'Setup commands'],
+            ['games', 'Games commands']
         ])
         .registerDefaults()
         .registerCommandsIn(path.join(__dirname, 'cmds'))

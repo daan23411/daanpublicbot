@@ -25,7 +25,6 @@ client.setProvider(
 )
 client.setMaxListeners(5000)
 
-const TicketData = require('@schemas/ticketData')
 const poll = require('@features/poll')
 const mongo = require('@util/mongo')
 const messageCount = require('@features/message-counter')
@@ -82,78 +81,5 @@ client.on('ready', async (guild) => {
 
     console.log('The client is ready!')
 });
-
-client.on('messageReactionAdd', async (reaction, client, message) => {
-    
-    if (client.isBot) return;
-
-    
-    if (reaction.message.partial) await reaction.message.fetch();
-    if (reaction.partial) await reaction.fetch();
-
-    const data = await TicketData.findOne({ GuildID: reaction.message.guild.id })
-    
-    if (!data) return;
-    if (reaction.message.partial) await reaction.message.fetch()
-     
-    if (reaction.emoji.name === '🎫' && reaction.message.id === data.MessageID) {
-        if (cooldown.has(reaction.message.member.id)) {
-            reaction.message.member.remove(reaction.message.member.id)
-            return
-        }
-        data.TicketNumber += 1;
-        await data.save()
-        const role = (role => {
-            return role.id === data.whitelistedRole
-        })
-        if(!role) {
-            return console.log(`Couldn't find the whitelisted Role`)
-        }
-        const channel = await reaction.message.guild.channels.create(`ticket-${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNumber}`, {
-            type: 'text',
-            permissionOverwrites: [{
-                id: reaction.message.guild.roles.cache.find(role => role.name === '@everyone'),
-                deny: ['VIEW_CHANNEL'],
-            },],
-        });
-        await channel.createOverwrite(reaction.message.member, {
-            VIEW_CHANNEL: true,
-            SEND_MESSAGES: true,
-            SEND_TTS_MESSAGES: false
-        });
-        await channel.createOverwrite(data.whitelistedRole, {
-            VIEW_CHANNEL: true,
-            SEND_MESSAGES: true,
-            SEND_TTS_MESSAGES: false
-        });
-        message.members.remove(reaction.message.member.id);
-        const successEmbed = new discord.MessageEmbed()
-            .setTitle(`Ticket #${'0'.repeat(4 - data.TicketNumber.toString().lenght)}${data.TicketNUmber}`)
-            .setDescription(`This ticket was created by ${reaction.message.member.toString()}. Please explain your question so a staff member can help you faster. A staff member will be here shortly. If you are finished, please say \`done\`.`)
-            .setColor('RANDOM')
-        let succesMsg = await channel.send(`${reaction.message.member.toString()}`, successEmbed)
-        await cooldown.add(reaction.message.member.id)
-        await checkIfClose(client, reaction, message.member, successMsg, channel)
-        setTimeout(function () {
-            cooldown.delete(message.member.id)
-        }, 30000);
-    }
-    async function checkIfClose(client, reaction, user, successMsg, channel) {
-        const filter = m => m.content.toLowerCase() === 'done'
-        const collector = new discord.MessageCollector(channel, filter)
-
-        collector.on('collect', async msg => {
-            channel.send(`This channel will be deleted in **10** seconds. Please type cancel to cancel this action`)
-            if (m => m.content.toLowerCase() === 'cancel') {
-                collector.stop()
-                return message.channel.send('Okay. I canceled this action.')
-            }
-            await collector.stop()
-            setTimeout(function () {
-                channel.delete()
-            }, 10000);
-        })
-    }
-})
 
 client.login(config.token)

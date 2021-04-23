@@ -8,6 +8,9 @@ module.exports = class AddCommand extends Commando.Command {
             group: 'misc',
             memberName: 'nickname',
             description: 'Change someone\'s nickname or reset it.',
+            userPermissions: [
+                "MANAGE_NICKNAMES"    
+            ],
             argsType: 'multiple'
         })
     }

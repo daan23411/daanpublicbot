@@ -19,12 +19,13 @@ module.exports = (client) => {
   
       // discord.gg/23RAN4
   
-      const code = content.split('discord.gg/')[1]
+      const code = content.split('https://discord.gg/PDuWVr8uZh')[1]
   
       if (content.includes('discord.gg/')) {
         const isOurInvite = await isInvite(guild, code)
         if (!isOurInvite) {
          try {
+           content.delete()
             member.send(`You have been banned from **${guild.name}** for advertising.`)
           await member.ban('Advertising in our server.')
          } catch (err) {

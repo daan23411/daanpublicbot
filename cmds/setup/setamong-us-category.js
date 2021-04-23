@@ -6,7 +6,7 @@ module.exports = class AmongUsCataCommand extends Commando.Command {
         super(client, {
             name: 'setupau',
             aliases: ['sau', 'setupamongus', 'set-among-us'],
-            group: 'misc',
+            group: 'setup',
             memberName: 'setupau',
             description: 'Setup the among us category.',
             userPermissions: ['ADMINISTRATOR'],

@@ -14,6 +14,9 @@ module.exports = class DocsCommand extends Commando.Command {
 
     async run(message, args) {
         const uri = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(args)}`
+        if(!args) {
+            return message.reply(`Please specify a documention to lookup`)
+        }
         
         axios
             .get(uri)

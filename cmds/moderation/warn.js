@@ -9,6 +9,9 @@ module.exports = class WarnCommand extends Commando.Command {
             memberName: 'warn',
             description: 'Warn a user if needed.',
             argsType: 'multiple',
+            clientPermissions: [
+                "KICK_MEMBERS"    
+            ],
             userPermissions: [
                 'KICK_MEMBERS',
             ]

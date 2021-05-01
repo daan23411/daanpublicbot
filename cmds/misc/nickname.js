@@ -11,6 +11,9 @@ module.exports = class AddCommand extends Commando.Command {
             userPermissions: [
                 "MANAGE_NICKNAMES"    
             ],
+            clientPermissions: [
+                "MANAGE_NICKNAMES"    
+            ],
             argsType: 'multiple'
         })
     }

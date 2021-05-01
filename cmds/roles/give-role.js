@@ -9,6 +9,9 @@ module.exports = class GiveRoleCommand extends Commando.Command {
             memberName: 'giverole',
             description: 'Give a user a specific role',
             argsType: 'multiple',
+            clientPermissions: [
+                "MANAGE_ROLES"    
+            ],
             userPermissions: [
                 'MANAGE_ROLES'
             ]
@@ -16,6 +19,7 @@ module.exports = class GiveRoleCommand extends Commando.Command {
     }
 
     async run(message, args) {
+
         const targetUser = message.mentions.users.first()
         if (!targetUser) {
             return message.reply('Please specify someone to give a role to.')

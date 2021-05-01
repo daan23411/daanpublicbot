@@ -8,6 +8,9 @@ module.exports = class SlowmodeCommand extends Commando.Command {
             group: 'misc',
             memberName: 'slowmode',
             description: 'Sets the slowmode of a channel',
+            clientPermissions: [
+              "MANAGE_CHANNELS"    
+          ],
             argsType: 'multiple'
         })
     }

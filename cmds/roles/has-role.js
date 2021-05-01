@@ -8,7 +8,13 @@ module.exports = class HasRoleCommand extends Commando.Command {
             group: 'roles',
             memberName: 'hasrole',
             description: 'Check if someone has a specific role',
-            argsType: 'multiple'
+            argsType: 'multiple',
+            clientPermissions: [
+                "MANAGE_ROLES"    
+            ],
+            userPermissions: [
+                'MANAGE_ROLES'
+            ]
         })
     }
 

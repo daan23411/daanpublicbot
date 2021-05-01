@@ -10,6 +10,9 @@ module.exports = class ClearWarnCommand extends Commando.Command {
             memberName: 'clearwarns',
             description: 'Clear someones warns.',
             argsType: 'single',
+            cientPermissions: [
+                "KICK_MEMBERS"    
+            ],
             userPermissions: [
                 'KICK_MEMBERS',
             ]

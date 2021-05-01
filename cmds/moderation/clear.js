@@ -8,6 +8,9 @@ module.exports = class AddCommand extends Commando.Command {
             memberName: 'clear',
             description: 'clear a number of messages',
             argsType: 'multiple',
+            clientPermissions: [
+                "MANAGE_MESSAGES"    
+            ],
             userPermissions: [
                 'MANAGE_MESSAGES'
             ]

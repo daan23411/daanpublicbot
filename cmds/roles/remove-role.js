@@ -11,6 +11,9 @@ module.exports = class RemoveRoleCommand extends Commando.Command {
             argsType: 'multiple',
             userPermissions: [
                 'MANAGE_ROLES'
+            ],
+            clientPermissions: [
+                'MANAGE_ROLES'
             ]
         })
     }

@@ -33,6 +33,7 @@ const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
 const mute = require('@features/moderation/mute')
+const suggestions = require('@features/suggestions')
 
 client.on('guildCreate', guild => {
     let embed = new discord.MessageEmbed()
@@ -48,6 +49,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', async (guild) => {
 
+
     client.user.setPresence({ activity: { name: `${config.prefix}help`, type: 'LISTENING'},  status: 'online'})
 
     client.registry
@@ -62,6 +64,9 @@ client.on('ready', async (guild) => {
         ])
         .registerDefaults()
         .registerCommandsIn(path.join(__dirname, 'cmds'))
+
+
+    suggestions(client)
 
     mute(client)
     

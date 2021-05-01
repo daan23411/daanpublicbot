@@ -17,6 +17,9 @@ module.exports = class MuteCommand extends Commando.Command {
             userPermissions: [
                 'MANAGE_ROLES'
             ],
+            clientPermissions: [
+                "MANAGE_ROLES"    
+            ],
             argsType: 'multiple',
             format: '<Target @> <reason>'
         })

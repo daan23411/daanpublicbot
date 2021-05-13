@@ -17,7 +17,7 @@ module.exports = {
     minArgs: 2,
     maxArgs: 2,
     format: '<Target @> <reason>',
-    async run(message, args) {
+    async callback(message, args) {
         const { guild, author: staff } = message
 
         if (args.length !== 2) {

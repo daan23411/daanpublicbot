@@ -7,7 +7,7 @@ module.exports = {
     category: 'Setup',
     description: 'Setup the Suggestions channel.',
     userPermissions: ['ADMINISTRATOR'],
-    async run(message, args) {
+    async callback(message, args) {
         const channel = message.mentions.channels.first() || message.channel
 
         const { guild: { id: guildId } } = message

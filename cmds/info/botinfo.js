@@ -8,7 +8,7 @@ module.exports = {
     guildOnly: true,
     category: 'Info',
     description: 'Displays useful information about the bot',
-    run: async (message) => {
+    callback: async (message) => {
         const embed = new MessageEmbed()
             .setAuthor(`Information about ${this.client.user.username}`, this.client.user.displayAvatarURL())
             .addFields({

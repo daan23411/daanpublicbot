@@ -3,12 +3,11 @@ const { author } = require('@root/package.json')
 const Commando = require('discord.js-commando')
 
 module.exports = {
-
     name: 'userinfo',
     guildOnly: false,
     category: 'info',
     description: 'Displays useful information about a user',
-    run = async (message) => {
+    callback: async (message) => {
 
         const { guild } = message
 

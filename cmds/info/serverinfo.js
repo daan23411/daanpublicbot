@@ -8,7 +8,7 @@ module.exports = {
     aliases: ['si'],
     category: 'Info',
     description: 'Displays the server information of the current guild',
-    async run(message, args) {
+    async callback(message, args) {
 
         let embed = new MessageEmbed()
             .setTimestamp()

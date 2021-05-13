@@ -10,7 +10,7 @@ module.exports = {
     ],
     minArgs: 2,
     maxArgs: 2,
-    async run(message, args) {
+    async callback(message, args) {
 
         const targetUser = message.mentions.users.first()
         if (!targetUser) {

@@ -6,7 +6,7 @@ module.exports = {
     category: 'Info',
     aliases: ['ss', 'sserver', 'supports', 'supsrv'],
     description: 'See the invite link to my support server.',
-    async run(message, args) {
+    async callback(message, args) {
         let embed = new MessageEmbed()
             .setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
             .setTitle('Join my support server!')

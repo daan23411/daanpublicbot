@@ -5,7 +5,7 @@ module.exports = {
             aliases: ['bal'],
             category: 'Economy',
             description: 'see someone\'s balance.',
-            run: async (message, args) => {
+            callback: async (message, args) => {
                 const target = message.mentions.users.first() || message.author
                 const targetId = target.id
 

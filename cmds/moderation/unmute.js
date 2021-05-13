@@ -12,7 +12,7 @@ module.exports = {
       description: 'Unmutes a user',
       minArgs: 2,
       maxArgs: 2,
-  run = async (message, args) => {
+  callback: async (message, args) => {
     //!unmute @
     //!unmute ID
 

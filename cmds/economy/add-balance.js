@@ -8,7 +8,7 @@ module.exports = {
     permissions: [
         'ADMINISTRATOR',
     ],
-    run: (message, args) => {
+    callback: async(message, args) => {
         const mention = message.mentions.users.first()
 
         if (!mention) {

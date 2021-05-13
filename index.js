@@ -26,7 +26,6 @@ client.setProvider(
 client.setMaxListeners(5000)
 
 const poll = require('@features/poll')
-const mongo = require('@util/mongo')
 const messageCount = require('@features/message-counter')
 const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
@@ -70,7 +69,7 @@ client.on('ready', async (guild) => {
     })
     .setDefaultPrefix('!')
     .setColor('00ff00')
-    .setMongoPath('config.MongoPath')
+    .setMongoPath(config.MongoPath)
     .setCategorySettings([
         {
             name: 'Economy',

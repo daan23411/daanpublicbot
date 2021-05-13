@@ -9,7 +9,7 @@ module.exports = {
         "MANAGE_CHANNELS"
       ],
       argsType: 'multiple',
-      async run(message, args) {
+      async callback(message, args) {
         const { channel } = message
 
         if (args.length < 2) {

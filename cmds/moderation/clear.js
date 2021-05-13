@@ -9,7 +9,7 @@ module.exports = {
     permissions: [
         "MANAGE_MESSAGES"
     ],
-    async run(message, args) {
+    async callback(message, args) {
         let amount = args[0]
 
         message.channel.bulkDelete(amount)

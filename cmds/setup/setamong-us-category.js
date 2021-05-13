@@ -7,7 +7,7 @@ module.exports = {
     category: 'Setup',
     description: 'Setup the among us category.',
     permissions: ['ADMINISTRATOR'],
-    async run(message, args) {
+    async callback(message, args) {
         const categoryId = args
         if (!categoryId) {
             return message.reply(`Please specify a category ID!`)

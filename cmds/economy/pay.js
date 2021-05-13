@@ -4,7 +4,7 @@ module.exports =  {
             name: 'pay',
             category: 'Economy',
             description: 'pay someone a specific amount of coins.',
-            run: async (message, args) => {
+            callback: async (message, args) => {
         const { guild, member } = message
 
         const target = message.mentions.users.first()

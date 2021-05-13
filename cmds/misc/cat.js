@@ -5,7 +5,7 @@ module.exports = {
     name: 'cat',
     category: 'Misc',
     description: 'Show a random cat picture',
-    async run(message, args) {
+    async callback(message, args) {
         axios
             .get('https://api.thecatapi.com/v1/images/search')
             .then((res) => {

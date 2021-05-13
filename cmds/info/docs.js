@@ -6,7 +6,7 @@ module.exports = {
     description: 'Shows you the discord.js documentation.',
     minArgs: 1,
     maxArgs: 1,
-    async run(message, args) {
+    async callback(message, args) {
         const uri = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(args)}`
         if (!args) {
             return message.reply(`Please specify a documention to lookup`)

@@ -1,16 +1,11 @@
 const Commando = require('discord.js-commando')
 
-module.exports = class AddCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'add',
-            group: 'misc',
-            memberName: 'add',
-            description: 'Adds two numbers together',
-            argsType: 'multiple'
-        })
-    }
-
+module.exports = {
+    name: 'add',
+    category: 'Misc',
+    description: 'Adds two numbers together',
+    minArgs: 2,
+    maxArgs: 2,
     async run(message, args) {
         let sum = 0
 

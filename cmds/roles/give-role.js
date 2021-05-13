@@ -1,23 +1,15 @@
 const Commando = require('discord.js-commando')
 
-module.exports = class GiveRoleCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'giverole',
-            aliases: ['addrole', 'grole'],
-            group: 'roles',
-            memberName: 'giverole',
-            description: 'Give a user a specific role',
-            argsType: 'multiple',
-            clientPermissions: [
-                "MANAGE_ROLES"    
-            ],
-            userPermissions: [
-                'MANAGE_ROLES'
-            ]
-        })
-    }
-
+module.exports = {
+    name: 'giverole',
+    aliases: ['addrole', 'grole'],
+    category: 'Roles',
+    description: 'Give a user a specific role',
+    permissions: [
+        "MANAGE_ROLES"
+    ],
+    minArgs: 2,
+    maxArgs: 2,
     async run(message, args) {
 
         const targetUser = message.mentions.users.first()

@@ -1,23 +1,15 @@
 const Commando = require('discord.js-commando')
 
-module.exports = class RemoveRoleCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'removerole',
-            aliases: ['delrole', 'rrole', 'deleterole'],
-            group: 'roles',
-            memberName: 'removerole',
-            description: 'Remove a user from a specific role.',
-            argsType: 'multiple',
-            userPermissions: [
-                'MANAGE_ROLES'
-            ],
-            clientPermissions: [
-                'MANAGE_ROLES'
-            ]
-        })
-    }
-
+module.exports = {
+    name: 'removerole',
+    aliases: ['delrole', 'rrole', 'deleterole'],
+    category: 'Roles',
+    description: 'Remove a user from a specific role.',
+    permissions: [
+        'MANAGE_ROLES'
+    ],
+    minArgs: 2,
+    maxArgs: 2,
     async run(message, args) {
         const targetUser = message.mentions.users.first()
         if (!targetUser) {
@@ -32,10 +24,10 @@ module.exports = class RemoveRoleCommand extends Commando.Command {
         const role = guild.roles.cache.find((role) => {
             return role.name === roleName
         })
-        if(!role) {
+        if (!role) {
             return message.reply(`There is no role with the name "${roleName}"`)
         }
-        
+
         const member = guild.members.cache.get(targetUser.id)
         if (member.roles.cache.get(role.id)) {
             member.roles.remove(role)

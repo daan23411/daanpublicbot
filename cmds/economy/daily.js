@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+
 const economy = require('@features/economy')
 const dailySchema = require('@schemas/daily-rewards')
 
@@ -10,17 +10,12 @@ const clearCache = () => {
 }
 clearCache()
 
-module.exports = class DailyCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
+module.exports = {
+    
             name: 'daily',
-            group: 'economy',
-            memberName: 'daily',
-            description: 'Get your daily rewards'
-        })
-    }
-
-    async run(message, args) {
+            category: 'Economy',
+            description: 'Get your daily rewards',
+            run: async (message, args) => {
         const { guild, member } = message
         const { id } = member
 

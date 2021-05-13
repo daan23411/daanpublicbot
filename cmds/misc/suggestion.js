@@ -2,17 +2,13 @@ const Commando = require('discord.js-commando')
 const { MessageEmbed } = require('discord.js')
 const { statusMessages, suggestionCache } = require('@features/suggestions')
 
-module.exports = class SuggestionCommand extends Commando.Command {
-  constructor(client) {
-    super(client, {
-      name: 'suggestion',
-      group: 'misc',
-      memberName: 'suggestion',
-      description: 'Updates the status of a suggestion',
-      argsType: 'multiple',
-    })
-  }
+module.exports = {
 
+  name: 'suggestion',
+  category: 'Misc',
+  description: 'Updates the status of a suggestion',
+  minArgs: 2,
+  maxArgs: 2,
   async run(message, args) {
     const { guild } = message
 

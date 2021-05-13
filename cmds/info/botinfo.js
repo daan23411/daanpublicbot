@@ -1,20 +1,14 @@
 const { MessageEmbed } = require('discord.js')
 const PrettyMilliseconds = require('pretty-ms')
 const { version, author } = require('@root/package.json')
-const Commando = require('discord.js-commando')
 
-module.exports = class BotInfoCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'botinfo',
-            guildOnly: true,
-            group: 'info',
-            memberName: 'botinfo',
-            description: 'Displays useful information about the bot',
-        })
-    }
+module.exports = {
 
-    run = async (message) => {
+    name: 'botinfo',
+    guildOnly: true,
+    category: 'Info',
+    description: 'Displays useful information about the bot',
+    run: async (message) => {
         const embed = new MessageEmbed()
             .setAuthor(`Information about ${this.client.user.username}`, this.client.user.displayAvatarURL())
             .addFields({

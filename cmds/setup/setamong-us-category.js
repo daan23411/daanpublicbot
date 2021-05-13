@@ -1,21 +1,15 @@
 const Commando = require('discord.js-commando')
 const amongUsSchema = require('@schemas/among-us-schema')
 
-module.exports = class AmongUsCataCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'setupau',
-            aliases: ['sau', 'setupamongus', 'set-among-us'],
-            group: 'setup',
-            memberName: 'setupau',
-            description: 'Setup the among us category.',
-            userPermissions: ['ADMINISTRATOR'],
-        })
-    }
-
+module.exports = {
+    name: 'setupau',
+    aliases: ['sau', 'setupamongus', 'set-among-us'],
+    category: 'Setup',
+    description: 'Setup the among us category.',
+    permissions: ['ADMINISTRATOR'],
     async run(message, args) {
         const categoryId = args
-        if(!categoryId) {
+        if (!categoryId) {
             return message.reply(`Please specify a category ID!`)
         }
 

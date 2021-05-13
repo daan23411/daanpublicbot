@@ -1,22 +1,17 @@
 const invitenotiSchema = require('@schemas/invitenoti-schema')
 const Commando = require('discord.js-commando')
 
-module.exports = class SetInviteCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'setinvite',
-            group: 'setup',
-            memberName: 'setinvite',
-            description: 'Setup the welcome and invite logger.',
-            argsType: 'single',
-            userPermissions: [
-                'ADMINISTRATOR'
-            ]
-        })
-    }
+module.exports = {
 
-    async run(message, args) {
-        const cache = {}
+  name: 'setinvite',
+  category: 'Setup',
+  description: 'Setup the welcome and invite logger.',
+  argsType: 'single',
+  permissions: [
+    'ADMINISTRATOR'
+  ],
+  async run(message, args) {
+    const cache = {}
 
     const { member, channel, content, guild } = message
 
@@ -47,5 +42,5 @@ module.exports = class SetInviteCommand extends Commando.Command {
         upsert: true,
       }
     )
-    }
+  }
 }

@@ -2,17 +2,11 @@ const Commando = require('discord.js-commando')
 const suggestionSchema = require('@schemas/suggestions-schema')
 const { fetchSuggestionChannels } = require('@features/suggestions')
 
-module.exports = class SetSuggestCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'setsuggestions',
-            group: 'setup',
-            memberName: 'setsuggestions',
-            description: 'Setup the Suggestions channel.',
-            userPermissions: ['ADMINISTRATOR'],
-        })
-    }
-
+module.exports = {
+    name: 'setsuggestions',
+    category: 'Setup',
+    description: 'Setup the Suggestions channel.',
+    userPermissions: ['ADMINISTRATOR'],
     async run(message, args) {
         const channel = message.mentions.channels.first() || message.channel
 

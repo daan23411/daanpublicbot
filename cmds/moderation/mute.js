@@ -6,39 +6,31 @@ const reasons = {
     ADVERTISING: 24
 }
 
-module.exports = class MuteCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'mute',
-            guildOnly: true,
-            group: 'moderation',
-            memberName: 'mute',
-            description: 'Mute a person with a specific reason',
-            userPermissions: [
-                'MANAGE_ROLES'
-            ],
-            clientPermissions: [
-                "MANAGE_ROLES"    
-            ],
-            argsType: 'multiple',
-            format: '<Target @> <reason>'
-        })
-    }
-
+module.exports = {
+    name: 'mute',
+    guildOnly: true,
+    category: 'Moderation',
+    description: 'Mute a person with a specific reason',
+    permissions: [
+        'MANAGE_ROLES'
+    ],
+    minArgs: 2,
+    maxArgs: 2,
+    format: '<Target @> <reason>',
     async run(message, args) {
         const { guild, author: staff } = message
 
-        if(args.length !== 2) {
+        if (args.length !== 2) {
             return message.reply(`Correct Syntax: ${guild.commandPrefix}mute <Target @> <Reason>`)
         }
 
         const target = message.mentions.users.first()
-        if(!target) {
+        if (!target) {
             return message.reply(`Please specify a user to mute. I can't mute thin air.`)
         }
 
         const reason = args[1].toUpperCase()
-        if(!reasons[reason]) {
+        if (!reasons[reason]) {
             let validReasons = ''
             for (const key in reasons) {
                 validReasons += `${key}, `
@@ -57,7 +49,7 @@ module.exports = class MuteCommand extends Commando.Command {
             return mute.current === true
         })
 
-        if(currentlyMuted.length) {
+        if (currentlyMuted.length) {
             return message.reply(`I can't mute <@${target.id}> because he is already muted.`)
         }
 
@@ -79,7 +71,7 @@ module.exports = class MuteCommand extends Commando.Command {
                 reason: 'No muted role existed so I created one'
             }).catch((err) => {
                 console.log(err)
-            }) 
+            })
             return message.reply("I couldn't mute that person since I can't find a role called 'Muted'. That might be useful so I created one")
         }
 

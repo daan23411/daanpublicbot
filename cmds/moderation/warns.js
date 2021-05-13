@@ -1,23 +1,15 @@
 const Commando = require('discord.js-commando')
 const warnSchema = require('@schemas/warn-schema')
 
-module.exports = class WarnsCommand extends Commando.Command {
-  constructor(client) {
-    super(client, {
-      name: 'warns',
-      group: 'moderation',
-      memberName: 'warns',
-      clientPermissions: [
-        "KICK_MEMBERS"
-      ],
-      userPermissions: [
-        "KICK_MEMBERS"
-      ],
-      description: 'See someones warns.',
-      argsType: 'single'
-    })
-  }
+module.exports = {
 
+  name: 'warns',
+  category: 'Moderation',
+  permissions: [
+    "KICK_MEMBERS"
+  ],
+  description: 'See someones warns.',
+  argsType: 'single',
   async run(message, args) {
     const target = message.mentions.users.first()
     if (!target) {

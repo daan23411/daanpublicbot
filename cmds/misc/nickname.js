@@ -1,23 +1,16 @@
 const Commando = require('discord.js-commando')
 
-module.exports = class AddCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'nickname',
-            aliases: ['nick'],
-            group: 'misc',
-            memberName: 'nickname',
-            description: 'Change someone\'s nickname or reset it.',
-            userPermissions: [
-                "MANAGE_NICKNAMES"    
-            ],
-            clientPermissions: [
-                "MANAGE_NICKNAMES"    
-            ],
-            argsType: 'multiple'
-        })
-    }
+module.exports = {
 
+    name: 'nickname',
+    aliases: ['nick'],
+    category: 'Misc',
+    description: 'Change someone\'s nickname or reset it.',
+    permissions: [
+        "MANAGE_NICKNAMES"
+    ],
+    minArgs: 1,
+    maxArgs: 2,
     async run(message, args) {
         const target = message.mentions.users.first()
         const member = message.guild.members.cache.get(target.id)

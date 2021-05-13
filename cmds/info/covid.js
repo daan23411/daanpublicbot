@@ -2,24 +2,18 @@ const Commando = require('discord.js-commando')
 const axios = require('axios')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class AddCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
-            name: 'covid',
-            group: 'misc',
-            memberName: 'covid',
-            description: 'See the covid stats of a country or of the whole world',
-            argsType: 'multiple'
-        })
-    }
-
-    async run(message, args) {
+module.exports = {
+    name: 'covid',
+    category: 'Info',
+    description: 'See the covid stats of a country or of the whole world',
+    argsType: 'multiple',
+    run: async (message, args) => {
         const baseUrl = "https://corona.lmao.ninja/v2";
 
         let url, response, corona;
 
         try {
-            url = args[0] ? `${baseUrl}/countries/${args[0]}`:`${baseUrl}/all`
+            url = args[0] ? `${baseUrl}/countries/${args[0]}` : `${baseUrl}/all`
             response = await axios.get(url)
             corona = response.data
         } catch (error) {

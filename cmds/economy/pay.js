@@ -1,18 +1,10 @@
 const economy = require('@features/economy')
-const Commando = require('discord.js-commando')
-
-module.exports = class PayCommand extends Commando.Command {
-    constructor(client) {
-        super(client, {
+module.exports =  {
+   
             name: 'pay',
-            group: 'economy',
-            memberName: 'pay',
+            category: 'Economy',
             description: 'pay someone a specific amount of coins.',
-            argsType: 'multiple'
-        })
-    }
-
-    async run(message, args) {
+            run: async (message, args) => {
         const { guild, member } = message
 
         const target = message.mentions.users.first()

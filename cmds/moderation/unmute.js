@@ -1,21 +1,17 @@
 const Commando = require('discord.js-commando')
 const muteSchema = require('@schemas/mute-schema')
 
-module.exports = class UnmuteCommand extends Commando.Command {
-  constructor(client) {
-    super(client, {
+module.exports = {
+
       name: 'unmute',
-      group: 'moderation',
-      memberName: 'unmute',
+      category: 'Moderation',
       userPermissions: ['MANAGE_ROLES'],
-      clientPermissions: [
+      permissions: [
         "MANAGE_ROLES"    
     ],
       description: 'Unmutes a user',
-      argsType: 'multiple',
-    })
-  }
-
+      minArgs: 2,
+      maxArgs: 2,
   run = async (message, args) => {
     //!unmute @
     //!unmute ID

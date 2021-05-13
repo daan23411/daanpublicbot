@@ -2,7 +2,7 @@ require('module-alias/register')
 
 
 const discord = require('discord.js')
-const cooldown = new Set()
+const WOKCommands = require('wokcommands')
 const config = require('@root/config.json')
 // const client = new Client({
 //     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
@@ -32,7 +32,7 @@ const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
-const mute = require('@features/moderation/mute')
+const mute = require('@features/Moderation/mute')
 const suggestions = require('@features/suggestions')
 
 client.on('guildCreate', guild => {
@@ -48,23 +48,61 @@ client.on('guildCreate', guild => {
 })
 
 client.on('ready', async (guild) => {
+    new WOKCommands(client, {
+        commandDir: 'cmds',
 
+        featuresDir: 'features',
+
+        showWarns: true,
+
+        del: 10,
+        
+        ignoreBots: true,
+
+        dbOptions: {
+            keepAlive: true,
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+        },
+
+        testServers: ['713368626190876712', '833675115408523264'],
+    })
+    .setDefaultPrefix('!')
+    .setColor('00ff00')
+    .setMongoPath('config.MongoPath')
+    .setCategorySettings([
+        {
+            name: 'Economy',
+            emoji: '💸'
+        },
+        {
+            name: 'Development',
+            emoji: '🔨'
+        },
+        {
+            name: 'Info',
+            emoji: '🌐'   
+        },
+        {
+            name: 'Games',
+            emoji : '🎮'
+        },
+        {
+            name: 'Misc',
+            emoji: '✨'
+        },
+        {
+            name: 'Moderation',
+            emoji: '🔒'
+        },
+        {
+            name: 'Roles',
+            emoji: '🎞'
+        }
+    ])
 
     client.user.setPresence({ activity: { name: `${config.prefix}help`, type: 'LISTENING'},  status: 'online'})
-
-    client.registry
-        .registerGroups([
-            ['misc', 'Misc commands'],
-            ['moderation', 'Moderation commands'],
-            ['economy', 'Economy commands'],
-            ['info', 'Info commands'],
-            ['roles', 'Roles commands'],
-            ['setup', 'Setup commands'],
-            ['games', 'Games commands']
-        ])
-        .registerDefaults()
-        .registerCommandsIn(path.join(__dirname, 'cmds'))
-
 
     suggestions(client)
 
@@ -77,8 +115,6 @@ client.on('ready', async (guild) => {
     inviteNotifications(client)
 
     antiAd(client)
-
-    await mongo(client)
 
     messageCount(client)
 

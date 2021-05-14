@@ -1,6 +1,5 @@
 require('module-alias/register')
 
-
 const discord = require('discord.js')
 const WOKCommands = require('wokcommands')
 const config = require('@root/config.json')
@@ -14,7 +13,6 @@ const messageCount = require('@features/message-counter')
 const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
-const loadFeatures = require('@root/features/load-features')
 const mute = require('@features/moderation/mute')
 const suggestions = require('@features/suggestions')
 
@@ -90,8 +88,6 @@ client.on('ready', async (guild) => {
     suggestions(client)
 
     mute(client)
-    
-    loadFeatures(client)
 
     levels(client)
 

@@ -31,7 +31,7 @@ const antiAd = require('@features/anti-ad')
 const inviteNotifications = require('@features/invite-notifications')
 const levels = require('@features/levels')
 const loadFeatures = require('@root/features/load-features')
-const mute = require('@features/Moderation/mute')
+const mute = require('@features/moderation/mute')
 const suggestions = require('@features/suggestions')
 
 client.on('guildCreate', guild => {

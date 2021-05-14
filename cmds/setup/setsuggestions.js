@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 const suggestionSchema = require('@schemas/suggestions-schema')
 const { fetchSuggestionChannels } = require('@features/suggestions')
 

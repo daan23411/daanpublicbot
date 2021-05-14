@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 const warnSchema = require('@schemas/warn-schema')
 
 module.exports = {

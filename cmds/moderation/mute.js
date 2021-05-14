@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 const muteSchema = require('@schemas/mute-schema')
 
 const reasons = {

@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 const { bugs } = require('@root/package.json')
 const { MessageEmbed } = require('discord.js')
 

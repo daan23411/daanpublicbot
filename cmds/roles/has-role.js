@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 
 module.exports = {
     name: 'hasrole',

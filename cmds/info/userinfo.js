@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const { author } = require('@root/package.json')
-const Commando = require('discord.js-commando')
+ 
 
 module.exports = {
     name: 'userinfo',

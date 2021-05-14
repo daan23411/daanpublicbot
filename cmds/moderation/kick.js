@@ -1,4 +1,4 @@
-const Commando = require('discord.js-commando')
+ 
 const discord = require('discord.js')
 
 module.exports = {

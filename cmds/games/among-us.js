@@ -1,4 +1,3 @@
-
 const amongUsSchema = require('@schemas/among-us-schema')
 const channelNameStart = 'Among Us -'
 const { MessageEmbed } = require('discord.js')

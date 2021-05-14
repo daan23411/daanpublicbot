@@ -1,4 +1,3 @@
-
 const economy = require('@features/economy')
 const dailySchema = require('@schemas/daily-rewards')
 

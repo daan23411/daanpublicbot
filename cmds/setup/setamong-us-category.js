@@ -1,4 +1,3 @@
- 
 const amongUsSchema = require('@schemas/among-us-schema')
 
 module.exports = {

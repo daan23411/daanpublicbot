@@ -1,5 +1,3 @@
- 
-
 module.exports = {
     name: 'hasrole',
     aliases: ['hr', 'hasr', 'hrole'],

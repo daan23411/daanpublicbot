@@ -1,5 +1,3 @@
- 
-
 module.exports = {
     name: 'giverole',
     aliases: ['addrole', 'grole'],

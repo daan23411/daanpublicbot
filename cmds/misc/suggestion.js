@@ -1,4 +1,3 @@
- 
 const { MessageEmbed } = require('discord.js')
 const { statusMessages, suggestionCache } = require('@features/suggestions')
 

@@ -1,4 +1,3 @@
- 
 const warnSchema = require('@schemas/warn-schema')
 
 module.exports = {

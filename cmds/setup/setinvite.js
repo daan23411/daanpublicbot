@@ -1,5 +1,4 @@
 const invitenotiSchema = require('@schemas/invitenoti-schema')
- 
 
 module.exports = {
 

@@ -1,5 +1,3 @@
- 
-
 module.exports = {
     name: 'removerole',
     aliases: ['delrole', 'rrole', 'deleterole'],

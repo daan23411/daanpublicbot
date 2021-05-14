@@ -4,25 +4,9 @@ require('module-alias/register')
 const discord = require('discord.js')
 const WOKCommands = require('wokcommands')
 const config = require('@root/config.json')
-// const client = new Client({
-//     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
-// })
-const { MongoClient } = require('mongodb')
-const { MongoDBProvider } = require('commando-provider-mongo')
-const path = require('path')
-const Commando = require('discord.js-commando')
-const client = new Commando.CommandoClient({
-    owner: '501700626690998280',
-    commandPrefix: config.prefix,
-    partials: ['MESSAGE', 'REACTION', 'CHANNEL']
+const client = new discord.Client({
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 })
-client.setProvider(
-    MongoClient.connect(config.MongoPath, {
-        useUnifiedTopology: true
-    }).then((client) => {
-        return new MongoDBProvider(client, 'Data')
-    })
-)
 client.setMaxListeners(5000)
 
 const poll = require('@features/poll')

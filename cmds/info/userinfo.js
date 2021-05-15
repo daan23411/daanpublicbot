@@ -15,7 +15,7 @@ module.exports = {
         const member = guild.members.cache.get(user.id)
 
         const embed = new MessageEmbed()
-            .setAuthor(`Information about ${this.client.user.username}`, this.client.user.displayAvatarURL())
+            .setAuthor(`Information about ${client.user.username}`, client.user.displayAvatarURL())
             .addFields({
                 name: 'User Tag',
                 value: user.tag

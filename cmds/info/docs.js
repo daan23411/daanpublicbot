@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { Client } = require("discord.js")
 
 module.exports = {
     name: 'docs',
@@ -6,10 +7,13 @@ module.exports = {
     description: 'Shows you the discord.js documentation.',
     minArgs: 1,
     maxArgs: 1,
-    async callback(message, args) {
+    run: async(message, channel, args) => {
         const uri = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(args)}`
+        console.log(message)
         if (!args) {
-            return message.reply(`Please specify a documention to lookup`)
+            
+            message.reply(`Please specify a documention to lookup`)
+            return
         }
 
         axios

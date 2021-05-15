@@ -10,10 +10,10 @@ module.exports = {
     description: 'Displays useful information about the bot',
     callback: async (message) => {
         const embed = new MessageEmbed()
-            .setAuthor(`Information about ${this.client.user.username}`, this.client.user.displayAvatarURL())
+            .setAuthor(`Information about ${client.user.username}`, client.user.displayAvatarURL())
             .addFields({
                 name: 'Bot Tag',
-                value: this.client.user.tag
+                value: client.user.tag
             }, {
                 name: 'Version',
                 value: version
@@ -22,13 +22,13 @@ module.exports = {
                 value: message.guild.commandPrefix
             }, {
                 name: 'Uptime',
-                value: PrettyMilliseconds(this.client.uptime)
+                value: PrettyMilliseconds(client.uptime)
             }, {
                 name: 'Owner',
                 value: author
             }, {
                 name: 'Server count',
-                value: this.client.guilds.cache.size
+                value: client.guilds.cache.size
             })
             .setTimestamp()
             .setColor('RANDOM')

@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const PrettyMilliseconds = require('pretty-ms')
 const { version, author } = require('@root/package.json')
-const { prefix } = require('@root/config.json')
 
 module.exports = {
 
@@ -9,7 +8,7 @@ module.exports = {
     guildOnly: true,
     category: 'Info',
     description: 'Displays useful information about the bot',
-    callback: async ({message, client}) => {
+    callback: async ({message, client, prefix}) => {
         const embed = new MessageEmbed()
             .setAuthor(`Information about ${client.user.username}`, client.user.displayAvatarURL())
             .addFields({
@@ -20,7 +19,7 @@ module.exports = {
                 value: version
             }, {
                 name: "Default command prefix",
-                value: config.prefix
+                value: prefix
             }, {
                 name: 'Uptime',
                 value: PrettyMilliseconds(client.uptime)

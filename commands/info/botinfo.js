@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const PrettyMilliseconds = require('pretty-ms')
 const { version, author } = require('@root/package.json')
+const { prefix } = require('@root/config.json')
 
 module.exports = {
 
@@ -18,8 +19,8 @@ module.exports = {
                 name: 'Version',
                 value: version
             }, {
-                name: "Server's command prefix",
-                value: message.guild.commandPrefix
+                name: "Default command prefix",
+                value: config.prefix
             }, {
                 name: 'Uptime',
                 value: PrettyMilliseconds(client.uptime)

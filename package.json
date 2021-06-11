@@ -1,6 +1,6 @@
 {
   "name": "doubtbot",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "description": "test bot for another series",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "daan2341#8196",
+  "author": "zVapor_#8196",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^15.3.0",

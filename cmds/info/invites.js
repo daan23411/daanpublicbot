@@ -4,7 +4,7 @@ module.exports = {
   category: 'Info',
   description: 'See who has the most invites',
 
-  async callback(message, args) {
+  async callback({message, args}) {
     const { guild } = message
 
     guild.fetchInvites().then((invites) => {

@@ -26,3 +26,11 @@ module.exports = client => {
         }
     })
 }
+
+module.exports.config = {
+    displayName: 'POll',
+
+    dbName: 'POLL',
+
+    loadDBFirst: true
+  }

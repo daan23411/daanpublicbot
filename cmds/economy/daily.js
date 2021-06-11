@@ -14,7 +14,7 @@ module.exports = {
             name: 'daily',
             category: 'Economy',
             description: 'Get your daily rewards',
-            callback: async (message, args) => {
+            callback: async ({message, args}) => {
         const { guild, member } = message
         const { id } = member
 

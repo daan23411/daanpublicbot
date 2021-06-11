@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: false,
     category: 'info',
     description: 'Displays useful information about a user',
-    callback: async (message, client) => {
+    callback: async ({message, client}) => {
 
         const { guild } = message
 

@@ -72,3 +72,11 @@ module.exports.statusMessages = statusMessages
 module.exports.suggestionCache = () => {
   return suggestionCache
 }
+
+module.exports.config = {
+  displayName: 'Suggestions',
+
+  dbName: 'SUGGESTIONS',
+
+  loadDBFirst: true
+}

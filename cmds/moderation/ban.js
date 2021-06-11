@@ -9,7 +9,7 @@ module.exports = {
     ],
     minArgs: 1,
     maxArgs: 1,
-    async callback(message) {
+    async callback({message}) {
         const target = message.mentions.users.first()
         if (!target) {
             return message.reply('Please specify someone to ban! I can\'t ban thin air...')

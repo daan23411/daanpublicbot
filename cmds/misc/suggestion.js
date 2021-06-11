@@ -8,7 +8,7 @@ module.exports = {
   description: 'Updates the status of a suggestion',
   minArgs: 2,
   maxArgs: 2,
-  async callback(message, args) {
+  async callback({message, args}) {
     const { guild } = message
 
     const messageId = args.shift()

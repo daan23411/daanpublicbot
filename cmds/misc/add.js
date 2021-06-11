@@ -4,7 +4,7 @@ module.exports = {
     description: 'Adds two numbers together',
     minArgs: 2,
     maxArgs: 2,
-    async callback(message, args) {
+    async callback({message, args}) {
         let sum = 0
 
         for (const arg of args) {

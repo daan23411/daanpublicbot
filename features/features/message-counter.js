@@ -23,3 +23,11 @@ module.exports = (client) => {
               }
     })
 }
+
+module.exports.config = {
+    displayName: 'Message Counter',
+
+    dbName: 'MESSAGE COUNTER',
+
+    loadDBFirst: true
+  }

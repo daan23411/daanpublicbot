@@ -66,3 +66,11 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
 }
 
 module.exports.addXP = addXP
+
+module.exports.config = {
+  displayName: 'Levels',
+
+  dbName: 'LEVELS',
+
+  loadDBFirst: true
+}

@@ -9,7 +9,7 @@ module.exports = {
   permissions: [
     'ADMINISTRATOR'
   ],
-  async callback(message, args) {
+  async callback({message, args}) {
     const cache = {}
 
     const { member, channel, content, guild } = message

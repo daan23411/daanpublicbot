@@ -6,7 +6,7 @@ module.exports = {
     category: 'Info',
     description: 'See the covid stats of a country or of the whole world',
     argsType: 'multiple',
-    callback: async (message, args) => {
+    callback: async ({message, args}) => {
         const baseUrl = "https://corona.lmao.ninja/v2";
 
         let url, response, corona;

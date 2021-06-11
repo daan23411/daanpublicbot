@@ -30,7 +30,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', async (guild) => {
     new WOKCommands(client, {
-        commandDir: 'cmds',
+        commandDir: './cmds',
 
         featuresDir: 'features',
 

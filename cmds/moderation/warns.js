@@ -9,7 +9,7 @@ module.exports = {
   ],
   description: 'See someones warns.',
   argsType: 'single',
-  async callback(message, args) {
+  async callback({message, args}) {
     const target = message.mentions.users.first()
     if (!target) {
       return message.reply('Please specify someone to warn')

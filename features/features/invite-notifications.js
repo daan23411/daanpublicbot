@@ -61,3 +61,11 @@ module.exports = client => {
         }
     })
 }
+
+module.exports.config = {
+    displayName: 'Invite Notifications',
+
+    dbName: 'INVITE NOTI',
+
+    loadDBFirst: true
+  }

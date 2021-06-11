@@ -57,3 +57,11 @@ module.exports.getCoins = async (guildId, userId) => {
       return coins
     
 }
+
+module.exports.config = {
+  displayName: 'Economy',
+
+  dbName: 'economy',
+
+  loadDBFirst: true
+}

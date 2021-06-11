@@ -35,3 +35,11 @@ module.exports = (client) => {
       }
     })
   }
+
+  module.exports.config = {
+    displayName: 'Anti Advertising',
+
+    dbName: 'ANTI ADVERTISING',
+
+    loadDBFirst: true
+  }

@@ -62,3 +62,11 @@ module.exports = (client, message) => {
     }
   })
 }
+
+module.exports.config = {
+  displayName: 'Mute',
+
+  dbName: 'MUTE',
+
+  loadDBFirst: true
+}

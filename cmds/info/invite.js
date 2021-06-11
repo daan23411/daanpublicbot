@@ -6,7 +6,7 @@ module.exports = {
     name: 'invite',
     category: 'Info',
     description: 'See my invite link.',
-    async callback(message, args) {
+    async callback({message, args}) {
         let embed = new MessageEmbed()
             .setAuthor(client.user.username, client.user.displayAvatarURL())
             .setTitle('Invite Me')

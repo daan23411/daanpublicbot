@@ -18,7 +18,7 @@ module.exports = {
                 name: 'Version',
                 value: version
             }, {
-                name: "Default command prefix",
+                name: "Server's command prefix",
                 value: prefix
             }, {
                 name: 'Uptime',

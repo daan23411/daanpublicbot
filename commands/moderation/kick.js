@@ -8,10 +8,15 @@ module.exports = {
     permissions: [
         'KICK_MEMBERS'
     ],
-    async callback({message}) {
+    async callback({message, args}) {
         const target = message.mentions.users.first()
         if (!target) {
             return message.reply('Please specify someone to kick! I can\'t kick thin air...')
+        }
+
+        const reason = args.shift()
+        if(!reason) {
+            return message.reply('Please specify a reason to ban')
         }
 
         const { guild } = message

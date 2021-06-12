@@ -9,10 +9,15 @@ module.exports = {
     ],
     minArgs: 1,
     maxArgs: 1,
-    async callback({message}) {
+    async callback({message, args}) {
         const target = message.mentions.users.first()
         if (!target) {
             return message.reply('Please specify someone to ban! I can\'t ban thin air...')
+        }
+
+        const reason = args.shift()
+        if(!reason) {
+            return message.reply('Please specify a reason to ban')
         }
 
         const { guild } = message

@@ -16,7 +16,7 @@ module.exports = {
 
         const reason = args.shift()
         if(!reason) {
-            return message.reply('Please specify a reason to ban')
+            return message.reply('Please specify a reason to kick')
         }
 
         const { guild } = message

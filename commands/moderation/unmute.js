@@ -11,18 +11,12 @@ module.exports = {
       description: 'Unmutes a user',
       minArgs: 2,
       maxArgs: 2,
+      expectedArgs: '<target mention>',
   callback: async ({message, args}) => {
     //!unmute @
     //!unmute ID
 
     const { guild } = message
-
-    if (args.length !== 1) {
-      message.reply(
-        `Please use the correct syntax: ${guild.commandPrefix}mute <Target user\'s @ OR their ID>`
-      )
-      return
-    }
 
     let id = ''
 

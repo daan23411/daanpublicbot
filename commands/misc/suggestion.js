@@ -8,6 +8,8 @@ module.exports = {
   description: 'Updates the status of a suggestion',
   minArgs: 2,
   maxArgs: 2,
+  permissions: ['ADMINISTRATOR'],
+  expectedArgs: '<message id> <accepted/denied>',
   async callback({message, args}) {
     const { guild } = message
 

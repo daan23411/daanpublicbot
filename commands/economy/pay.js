@@ -4,6 +4,7 @@ module.exports =  {
             name: 'pay',
             category: 'Economy',
             description: 'pay someone a specific amount of coins.',
+            expectedArgs: '<target mention> <coins to pay>',
             callback: async ({message, args}) => {
         const { guild, member } = message
 

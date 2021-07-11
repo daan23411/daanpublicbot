@@ -8,7 +8,9 @@ module.exports = {
     "KICK_MEMBERS"
   ],
   description: 'See someones warns.',
-  argsType: 'single',
+  maxArgs: 1,
+  minArgs: 1,
+  expectedArgs: '<target mention>',
   async callback({message, args}) {
     const target = message.mentions.users.first()
     if (!target) {

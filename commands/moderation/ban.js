@@ -8,7 +8,8 @@ module.exports = {
         'BAN_MEMBERS'
     ],
     minArgs: 1,
-    maxArgs: 1,
+    maxArgs: 2,
+    expectedArgs: '<target mention> <reason>',
     async callback({message, args}) {
         const target = message.mentions.users.first()
         if (!target) {
@@ -24,7 +25,7 @@ module.exports = {
 
         const member = guild.members.cache.get(target.id)
         if (member.banable) {
-            member.ban()
+            member.ban(reason)
             const kickEmbed = new discord.MessageEmbed()
                 .setTitle('Ban Succesfull!')
                 .setDescription(`You have banned succesfully <@${member.id}> from **${guild.name}**`)

@@ -8,6 +8,9 @@ module.exports = {
     permissions: [
         'KICK_MEMBERS'
     ],
+    expectedArgs: '<target mention> <reason>',
+    minArgs: 2,
+    maxArgs: 2,
     async callback({message, args}) {
         const target = message.mentions.users.first()
         if (!target) {

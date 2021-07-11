@@ -15,7 +15,7 @@ module.exports = {
     ],
     minArgs: 2,
     maxArgs: 2,
-    format: '<Target @> <reason>',
+    format: '<Target mention> <reason>',
     async callback({message, args}) {
         const { guild, author: staff } = message
 

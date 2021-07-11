@@ -6,7 +6,8 @@ module.exports = {
       permissions: [
         "MANAGE_CHANNELS"
       ],
-      argsType: 'multiple',
+      minArgs: 0,
+      maxArgs: 1,
       async callback({message, args}) {
         const { channel } = message
 

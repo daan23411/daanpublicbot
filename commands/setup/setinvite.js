@@ -5,10 +5,12 @@ module.exports = {
   name: 'setinvite',
   category: 'Setup',
   description: 'Setup the welcome and invite logger.',
-  argsType: 'single',
+  minArgs: 1,
+  maxArgs: -1,
   permissions: [
     'ADMINISTRATOR'
   ],
+  expectedArgs: '<welcome message>',
   async callback({message, args}) {
     const cache = {}
 

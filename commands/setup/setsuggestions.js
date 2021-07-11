@@ -6,6 +6,9 @@ module.exports = {
     category: 'Setup',
     description: 'Setup the Suggestions channel.',
     userPermissions: ['ADMINISTRATOR'],
+    expectedArgs: '[channel mention]',
+    minArgs: 0,
+    maxArgs: 1,
     async callback({message, args}) {
         const channel = message.mentions.channels.first() || message.channel
 

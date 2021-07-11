@@ -8,10 +8,11 @@ module.exports = {
     ],
     minArgs: 2,
     maxArgs: 2,
+    expectedArgs: '<target mention> <role to remove>',
     async callback({message, args}) {
         const targetUser = message.mentions.users.first()
         if (!targetUser) {
-            return message.reply('Please specify someone to give a role to.')
+            return message.reply('Please specify someone to remove a role from.')
         }
 
         args.shift()

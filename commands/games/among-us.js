@@ -9,6 +9,7 @@ module.exports = {
     minArgs: 2,
     maxArgs: 2,
     aliases: ['au', 'among-us', 'among-sus'],
+    expectedArgs: '<region> <code>',
     callback: async({message, args, client}) => {
         client.on('voiceStateUpdate', oldState => {
             const { channel } = oldState

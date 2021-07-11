@@ -9,6 +9,7 @@ module.exports = {
     ],
     minArgs: 1,
     maxArgs: 2,
+    expectedArgs: '<target mention> <nickname>',
     async callback({message, args}) {
         const target = message.mentions.users.first()
         const member = message.guild.members.cache.get(target.id)

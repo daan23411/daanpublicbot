@@ -8,6 +8,7 @@ module.exports = {
     ],
     minArgs: 2,
     maxArgs: 2,
+    expectedArgs: '<target mention> <role to add>',
     async callback({message, args}) {
 
         const targetUser = message.mentions.users.first()

@@ -7,6 +7,7 @@ module.exports = {
     description: 'Shows you the discord.js documentation.',
     minArgs: 1,
     maxArgs: 1,
+    expectedArgs: '<documentation you want to view>',
     callback: async({ message, channel, args }) => {
         const uri = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(args)}`
         if (!args) {

@@ -8,6 +8,7 @@ module.exports = {
     permissions: [
         'ADMINISTRATOR',
     ],
+    expectedArgs: '<target mention> <coins to add>',
     callback: async({message, args}) => {
         const mention = message.mentions.users.first()
 

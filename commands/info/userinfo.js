@@ -7,11 +7,12 @@ module.exports = {
     guildOnly: false,
     category: 'Info',
     description: 'Displays useful information about a user',
+    expectedArgs: '<target mention>',
     callback: async ({message, client}) => {
 
         const { guild } = message
 
-        const user = message.mentions.users.first() || message.member.user
+        const user = message.mentions.users.first() || message.author
         const member = guild.members.cache.get(user.id)
 
         const embed = new MessageEmbed()

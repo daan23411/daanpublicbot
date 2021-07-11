@@ -7,6 +7,9 @@ module.exports = {
     permissions: [
         "MANAGE_MESSAGES"
     ],
+    maxArgs: 1,
+    minArgs: 1,
+    expectedArgs: '<amount of messages>',
     async callback({message, args}) {
         let amount = args[0]
 

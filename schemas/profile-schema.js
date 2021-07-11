@@ -10,7 +10,7 @@ const profileSchema = mongoose.Schema({
     userId: reqString,
     coins: {
         type: Number,
-        default: 0
+        default: 1000
     },
     xp: {
         type: Number,

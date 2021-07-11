@@ -8,14 +8,6 @@ const client = new discord.Client({
 })
 client.setMaxListeners(5000)
 
-const poll = require('@features/poll')
-const messageCount = require('@features/message-counter')
-const antiAd = require('@features/anti-ad')
-const inviteNotifications = require('@features/invite-notifications')
-const levels = require('@features/levels')
-const mute = require('@features/moderation/mute')
-const suggestions = require('@features/suggestions')
-
 client.on('guildCreate', guild => {
     let embed = new discord.MessageEmbed()
     .setTitle('Thanks for inviting me!')
@@ -80,24 +72,15 @@ client.on('ready', async (guild) => {
         {
             name: 'Roles',
             emoji: '🎞'
+        },
+        {
+            name: 'Reaction Roles',
+            emoji: '🎗',
+            hidden: true
         }
     ])
 
     client.user.setPresence({ activity: { name: `${config.prefix}help`, type: 'LISTENING'},  status: 'online'})
-
-    suggestions(client)
-
-    mute(client)
-
-    levels(client)
-
-    inviteNotifications(client)
-
-    antiAd(client)
-
-    messageCount(client)
-
-    poll(client)
 
     console.log('The client is ready!')
 });

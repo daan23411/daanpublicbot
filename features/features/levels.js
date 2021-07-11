@@ -1,74 +1,30 @@
-const profileSchema = require('@schemas/profile-schema')
+const Levels = require('discord-xp')
 
 module.exports = (client) => {
-  client.on('message', (message) => {
+  client.on('message', async (message) => {
     if (message.author.bot) {
       return
     }
     if (message.channel.type === 'dm') {
       return
     }
-
-    const { guild, member } = message
-
-    addXP(guild.id, member.id, 23, message)
-  })
-}
-
-const getNeededXP = (level) => level * level * 100
-
-const addXP = async (guildId, userId, xpToAdd, message) => {
-  
-    try {
-      const result = await profileSchema.findOneAndUpdate(
-        {
-          guildId,
-          userId,
-        },
-        {
-          guildId,
-          userId,
-          $inc: {
-            xp: xpToAdd,
-          },
-        },
-        {
-          upsert: true,
-          new: true,
-        }
-      )
-
-      let { xp, level } = result
-      const needed = getNeededXP(level)
-
-      if (xp >= needed) {
-        ++level
-        xp -= needed
-
-        message.reply(
-          `You are now level ${level} with ${xp} experience! You now need ${getNeededXP(level)} XP to level up again.`
-        )
-
-        await profileSchema.updateOne(
-          {
-            guildId,
-            userId,
-          },
-          {
-            level,
-            xp,
-          }
-        )
-      }
-    } catch (err) {
-      console.log(err)
+    if (message.channel.id === '845335769785696315') {
+      return
     }
-}
 
-module.exports.addXP = addXP
+    const randomXP = Math.floor(Math.random() * 10) + 1
+    const hasLeveldUP = await Levels.appendXp(message.author.id, message.guild.id, randomXP)
+
+    if (hasLeveldUP) {
+      const user = await Levels.fetch(message.author.id, message.guild.id)
+      message.channel.send(`${message.member} you have leveled up to ${user.level}!`)
+    }
+  })
+
+}
 
 module.exports.config = {
-  displayName: 'Levels',
+  displayName: 'levels',
 
   dbName: 'LEVELS',
 

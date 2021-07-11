@@ -51,7 +51,6 @@ module.exports = {
         claimedCache.push(id)
 
         const coins = 100
-        // TODO: Give the rewards
         const newCoins = await economy.addCoins(guild.id, id, coins)
         message.reply(`You have claimed your daily rewards! you now have ${newCoins} coins`)
     }

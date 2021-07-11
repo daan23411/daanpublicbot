@@ -5,7 +5,7 @@ const { author } = require('@root/package.json')
 module.exports = {
     name: 'userinfo',
     guildOnly: false,
-    category: 'info',
+    category: 'Info',
     description: 'Displays useful information about a user',
     callback: async ({message, client}) => {
 

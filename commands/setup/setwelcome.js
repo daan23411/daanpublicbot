@@ -15,7 +15,7 @@ module.exports = {
     requiredPermissions: [
         'ADMINISTRATOR'
     ],
-    category: 'setup',
+    category: 'Setup',
     description: 'Setup the welcome canvas',
     callback: async ({ message, args }) => {
        const { guild, channel } = message;

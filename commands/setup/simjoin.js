@@ -1,9 +1,9 @@
 module.exports = {
-    requiredPermissions: [
+    permissions: [
         'ADMINISTRATOR'
     ],
-    Category: 'Setup',
-    Description: 'Simulate a join.',
+    category: 'Setup',
+    description: 'Simulate a join.',
     testOnly: true,
     callback: async({ message, args, text, client}) => {
         client.emit('guildMemberAdd', message.member)

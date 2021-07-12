@@ -51,7 +51,8 @@ client.on('ready', async (guild) => {
             },
             {
                 name: 'Development',
-                emoji: '🔨'
+                emoji: '🔨',
+                hidden: true,
             },
             {
                 name: 'Info',
@@ -59,7 +60,8 @@ client.on('ready', async (guild) => {
             },
             {
                 name: 'Setup',
-                emoji: '⚙'
+                emoji: '⚙',
+                hidden: true,
             },
             {
                 name: 'Games',

@@ -6,7 +6,7 @@ module.exports = {
     category: 'Economy',
     description: 'add coins to someone\'s balance.',
     permissions: [
-        'ADMINISTRATOR',
+        "ADMINISTRATOR",
     ],
     expectedArgs: '<target mention> <coins to add>',
     callback: async({message, args}) => {
